@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -23,6 +23,9 @@
 		padding:0;
 		color:#fff
 	}
+
+	h1.logo
+	{font-size: 2em;}
 
 	p{
 		font-size: 1.5em;
@@ -56,12 +59,13 @@
 	/* Defining each sectino background and styles
 	* --------------------------------------- */
 	#section0{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_why.jpg);
+		background-image: url(/img/Shanghai_why.jpg);
 	}
 	#section0 h1{
-		top: 50%;
+		/*top: 50%;
 		transform: translateY(-50%);
-		position: relative;
+		position: relative;*/
+        margin-top:40%;
 		font-size: 5em;
 	}
 	#section1{
@@ -69,11 +73,11 @@
 		padding: 6% 0 0 0;
 	}	
 	#section2{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_answer.jpg);
+		background-image: url(/img/Shanghai_answer.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section4{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_group.jpg);
+		background-image: url(/img/Shanghai_group.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section4 h1{
@@ -84,18 +88,19 @@
 	/*Adding background for the slides
 	* --------------------------------------- */
 	#slide1{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_people.jpg);
+		background-image: url(/img/Shanghai_people.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide2{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_transportation.jpg);
+		background-image: url(/img/Shanghai_transportation.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide3{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_landmark.jpg);
+		background-image: url(/img/Shanghai_landmark.jpg);
 		padding: 6% 0 0 0;
 	}
-
+        /*Adding text style for each part
+	* --------------------------------------- */
 	img.workflow { 
 		position: absolute;
 		left: 100px;
@@ -130,12 +135,6 @@
 		font-size: 1.2em;
 		text-align:left;
 	}
-
-	/* Bottom menu
-	* --------------------------------------- */
-	#infoMenu li a {
-		color: #fff;
-	}
 	</style>
 
 	<!--[if IE]>
@@ -145,68 +144,64 @@
 	<![endif]-->
 </head>
 <body>
-	<div class="main">
-		<header>
-			<h1 class="logo" style="color:#fff;"> SHH </h1>
-		</header>
+    <div class="main">
+        <header>
+            <h1 class="logo" style="color:#fff;"> SHH </h1>
+        </header>
+        <footer>
+            <!-- 向下滚动 -->
+            <div id="explore">
+                <b> Explore next part</b>
+            </div>
 
-		<footer>
-		   <!-- 向下滚动 -->
-			<div id="explore">
-				<b> Explore next part</b>
-			</div>
-			
-			<a href="/people&economic.html">
-				<div class="scroll-down"></div>
-			</a>
-		</footer>
-	</div>
-	
-<div id="fullpage">
-	<div class="section " id="section0">
-		<h1 style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Why Shanghai</h1>
-	    <p style="width:70%; line-height: 500px; margin:0 auto;">The reasons we select Shanghai as our target</p>
-	</div>
+            <a href="/people&economic.html">
+                <div class="scroll-down"></div>
+            </a>
+        </footer>
+    </div>
 
-	<div class="section" id="section1">
-		<img class="workflow" src="/CASA0003_Visualisation_Group_7/Website/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
-		<h1 class="workflow" style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Development of Shanghai</h1>
-		<p class="workflow" style="width:40%; color: #fff;">Shanghai is China’s economic and cultural center. Unlike other cities in the world, Shanghai’s development is closely related to China’s modern history. It took only a hundred years from a small county town to become the largest port in the Far East, which is also different from other cities in China. Shanghai's development has never stopped.<br /><br />When Shanghai residents talk about life in Shanghai, what are they actually talking about? Such conversations have occurred every day in the past few decades, and the answer to this question varies with the development of the city.</p>
-	</div>
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <h1 style="width: 70%;margin:0 auto;color:rgb(255, 1, 1);padding-top: 200px;"> Why Shanghai</h1>
+            <p style="width:70%; margin:0 auto;">The reasons we select Shanghai as our target</p>
+        </div>
+        <div class="section" id="section1">
+            <img class="workflow" src="/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
+            <h1 class="workflow" style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Development of Shanghai</h1>
+            <p class="workflow" style="width:40%; color: #fff;">Shanghai is China’s economic and cultural center. Unlike other cities in the world, Shanghai’s development is closely related to China’s modern history. It took only a hundred years from a small county town to become the largest port in the Far East, which is also different from other cities in China. Shanghai's development has never stopped.<br /><br />When Shanghai residents talk about life in Shanghai, what are they actually talking about? Such conversations have occurred every day in the past few decades, and the answer to this question varies with the development of the city.</p>
+        </div>
+        <div class="section" id="section2">
+            <h1 class="answer" style="color:#fff">DIFFERENT ANSWERS<br />AT DIFFERENT TIMES</h1>
+            <p class="answer" style="width:50%; color:#fff">Our team will travel through different eras and review the answers that Shanghai has given from the aspects of humanities, economy, transportation and landmarks.</p>
+        </div>
+        <div class="section" id="section3">
+            <div class="slide" id="slide1"><h1>People and Economic</h1></div>
+            <div class="slide" id="slide2"><h1>Transportation</h1></div>
+            <div class="slide" id="slide3"><h1>Landmark</h1></div>
+        </div>
+        <div class="section" id="section4"><h1>our team here</h1></div>
+    </div>
+    <!-- 想把菜单栏一直显示，不知道为啥第二部分会遮住，而且下面这段代码在body里放的位置不同，不如放在上一段fullpage前面，出来的效果也不同不知道为啥 -->
+    <div class="menu">
+        <ul>
+            <li><a href="landmark.html">Landmark</a></li>
+            <li><a href="transportation.html">Transportation</a></li>
+            <li><a href="people&economic.html">People and Economic</a></li>
+            <li class="active"><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
 
-	<div class="section" id="section2">
-		<h1 class="answer" style="color:#fff">DIFFERENT ANSWERS<br />AT DIFFERENT TIMES</h1>
-		<p class="answer" style="width:50%; color:#fff">Our team will travel through different eras and review the answers that Shanghai has given from the aspects of humanities, economy, transportation and landmarks.</p>
-	</div>	
+    <script type="text/javascript" src="js/fullpage.js"></script>
+    <!--<script type="text/javascript" src="js/examples.js"></script>-->
 
-	<div class="section" id="section3">
-		<div class="slide" id="slide1"><h1>People and Economic</h1></div>
-		<div class="slide" id="slide2"><h1>Transportation</h1></div>
-		<div class="slide" id="slide3"><h1>Landmark</h1></div>
-	</div>
-	<div class="section" id="section4"><h1>our team here</h1></div>
-</div>
-<!-- 想把菜单栏一直显示，不知道为啥第二部分会遮住，而且下面这段代码在body里放的位置不同，不如放在上一段fullpage前面，出来的效果也不同不知道为啥 -->
-<div class="menu">
-	<ul>
-		<li><a href="landmark.html">Landmark</a></li>
-		<li><a href="transportation.html">Transportation</a></li>
-		<li><a href="people&economic.html">People and Economic</a></li>
-		<li class="active"><a href="about.html">About</a></li>
-		<li><a href="index.html">Home</a></li>
-	</ul>
-</div>
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            verticalCentered: false,
+            //to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
+            css3: false
+        });
 
-<script type="text/javascript" src="js/fullpage.js"></script>
-<script type="text/javascript" src="js/examples.js"></script>
-
-<script type="text/javascript">
-    var myFullpage = new fullpage('#fullpage', {
-        verticalCentered: false,
-
-        //to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
-        css3:false
-    });
-</script>
+    </script>
 </body>
 </html>
