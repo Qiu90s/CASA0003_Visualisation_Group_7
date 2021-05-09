@@ -91,6 +91,18 @@
     var SLIDES_ARROW_NEXT =     SLIDES_ARROW + ' ' + SLIDES_NEXT;
     var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
 
+    function showFooter() {
+        var sectionIndex = $("#fullpage .section").length - 1;
+        if (sectionIndex >= 0) {
+            if ($("#fullpage .section")[sectionIndex].className.indexOf("active") >= 0) {
+                css($(".main footer"), { 'display': 'flex' });
+            }
+            else {
+                css($(".main footer"), { 'display': 'none' });
+            }
+        }
+    }
+
     function initialise(containerSelector, options) {
         var isOK = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
 
@@ -98,6 +110,8 @@
         var $htmlBody = $('html, body');
         var $html = $('html')[0];
         var $body = $('body')[0];
+
+        showFooter();
 
         //only once my friend!
         if(hasClass($html, ENABLED)){ displayWarnings(); return; }
@@ -2010,7 +2024,16 @@
         /**
         * Actions to do once the section is loaded.
         */
-        function afterSectionLoads (v){
+        function afterSectionLoads(v) {
+            var scroH = $("#fullpage")[0].style.top.replace("px", "") * 1;
+            if (scroH < 0) {
+                css($(".menu"), { 'background-color': 'rgba(0, 0, 0, 0.7)' });
+            }
+            else {
+                css($(".menu"), { 'background-color': 'transparent' });
+            }
+            showFooter();
+            
             continuousVerticalFixSectionOrder(v);
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
