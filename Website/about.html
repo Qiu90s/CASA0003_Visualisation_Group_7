@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>About</title>
+	<meta name="author" content="Qiuyu li" />
+	<meta name="description" content="About page with img background" />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fixed,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: 'Oswald', sans-serif;
+		margin:0;
+		padding:0;
+		color:#fff
+	}
+
+	p{
+		font-size: 1.5em;
+		font-family: 'Open Sans', sans-serif;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3,
+	#section4,
+    #slide1,
+    #slide2,
+	#slide3{
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		background-image: url(/img/Shanghai_why.jpg);
+	}
+	#section0 h1{
+		top: 50%;
+		transform: translateY(-50%);
+		position: relative;
+		font-size: 5em;
+	}
+	#section1{
+		background: color #000;
+		padding: 6% 0 0 0;
+	}	
+	#section2{
+		background-image: url(/img/Shanghai_answer.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section4{
+		background-image: url(/img/Shanghai_group.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section4 h1{
+		color: #000;
+	}
+
+
+	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(/img/Shanghai_people.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide2{
+		background-image: url(/img/Shanghai_transportation.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide3{
+		background-image: url(/img/Shanghai_landmark.jpg);
+		padding: 6% 0 0 0;
+	}
+
+	img.workflow { 
+		position: absolute;
+		left: 100px;
+		top: 150px
+    }
+
+	h1.workflow{
+		position: absolute;
+		left: 550px;
+		top: 150px;
+		font-size: 2.5em;
+	}
+	p.workflow{
+		position: absolute;
+		left: 750px;
+		top: 250px;
+		font-size: 1em;
+		text-align:left;
+	}
+
+	h1.answer{
+		position: absolute;
+		left:80px;
+		top: 120px;
+		font-size: 4em;
+	}
+
+	p.answer{
+		position: absolute;
+		left:80px;
+		top: 340px;
+		font-size: 1.2em;
+		text-align:left;
+	}
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+</head>
+<body>
+	<div class="main">
+		<header>
+			<h1 class="logo" style="color:#fff;"> SHH </h1>
+		</header>
+
+		<footer>
+		   <!-- 向下滚动 -->
+			<div id="explore">
+				<b> Explore next part</b>
+			</div>
+			
+			<a href="/people&economic.html">
+				<div class="scroll-down"></div>
+			</a>
+		</footer>
+	</div>
+	
+<div id="fullpage">
+	<div class="section " id="section0">
+		<h1 style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Why Shanghai</h1>
+	    <p style="width:70%; line-height: 500px; margin:0 auto;">The reasons we select Shanghai as our target</p>
+	</div>
+
+	<div class="section" id="section1">
+		<img class="workflow" src="/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
+		<h1 class="workflow" style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Development of Shanghai</h1>
+		<p class="workflow" style="width:40%; color: #fff;">Shanghai is China’s economic and cultural center. Unlike other cities in the world, Shanghai’s development is closely related to China’s modern history. It took only a hundred years from a small county town to become the largest port in the Far East, which is also different from other cities in China. Shanghai's development has never stopped.<br /><br />When Shanghai residents talk about life in Shanghai, what are they actually talking about? Such conversations have occurred every day in the past few decades, and the answer to this question varies with the development of the city.</p>
+	</div>
+
+	<div class="section" id="section2">
+		<h1 class="answer" style="color:#fff">DIFFERENT ANSWERS<br />AT DIFFERENT TIMES</h1>
+		<p class="answer" style="width:50%; color:#fff">Our team will travel through different eras and review the answers that Shanghai has given from the aspects of humanities, economy, transportation and landmarks.</p>
+	</div>	
+
+	<div class="section" id="section3">
+		<div class="slide" id="slide1"><h1>People and Economic</h1></div>
+		<div class="slide" id="slide2"><h1>Transportation</h1></div>
+		<div class="slide" id="slide3"><h1>Landmark</h1></div>
+	</div>
+	<div class="section" id="section4"><h1>our team here</h1></div>
+</div>
+<!-- 想把菜单栏一直显示，不知道为啥第二部分会遮住，而且下面这段代码在body里放的位置不同，不如放在上一段fullpage前面，出来的效果也不同不知道为啥 -->
+<div class="menu">
+	<ul>
+		<li><a href="landmark.html">Landmark</a></li>
+		<li><a href="transportation.html">Transportation</a></li>
+		<li><a href="people&economic.html">People and Economic</a></li>
+		<li class="active"><a href="about.html">About</a></li>
+		<li><a href="index.html">Home</a></li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="js/fullpage.js"></script>
+<script type="text/javascript" src="js/examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false,
+
+        //to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
+        css3:false
+    });
+</script>
+</body>
+</html>
