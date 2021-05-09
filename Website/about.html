@@ -1,0 +1,414 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Fixed headers - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage fixed header and footer." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fixed, header,footer, absolute, positioned,css" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+	.intro p{
+		color: #fff;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Fixed header and footer.
+	* --------------------------------------- */
+	#header, #footer{
+		position:fixed;
+		height: 50px;
+		display:block;
+		width: 100%;
+		background: #333;
+		z-index:9;
+		text-align:center;
+		color: #f2f2f2;
+		padding: 20px 0 0 0;
+	}
+
+	#header{
+		top:0px;
+	}
+	#footer{
+		bottom:0px;
+	}
+
+	/* Defining each section background and styles
+	* --------------------------------------- */
+	#section0{
+		background: -webkit-gradient(linear, top left, bottom left, from(#f79e19), to(#ff6702));
+		background: -webkit-linear-gradient(#f79e19, #ff6702);
+		background: linear-gradient(#f79e19,#ff6702);
+	}
+
+	#section2{
+		background: -webkit-gradient(linear, top left, bottom left, from(#ff6702), to(#ff0202));
+		background: -webkit-linear-gradient(#ff6702, #ff0202);
+		background: linear-gradient(#ff6702,#ff0202);
+	}
+
+
+
+ 	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background: -webkit-gradient(linear, top left, bottom left, from(#7baabe), to(#969ac6));
+		background: -webkit-linear-gradient(#7BAABE, #969AC6);
+		background: linear-gradient(#7BAABE,#969AC6);
+	}
+	#slide2{
+		background: -webkit-gradient(linear, top left, bottom left, from(#92a1ca), to(#76c2bd));
+		background: -webkit-linear-gradient(#92a1ca, #76c2bd);
+		background: linear-gradient(#92a1ca,#76c2bd);
+	}
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu {
+		bottom: 80px;
+	}
+	#infoMenu li a {
+		color: #fff;
+		z-index: 999;
+	}
+
+	</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+</head>
+<body>
+
+<select id="demosMenu">
+  <option selected>Choose Demo</option>
+  <option id="jquery-adapter">jQuery adapter</option>
+  <option id="active-slide">Active section and slide</option>
+  <option id="auto-height">Auto height</option>
+  <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
+  <option id="backgrounds">Background images</option>
+  <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
+  <option id="background-video">Background video</option>
+  <option id="callbacks-v2-compatible">Callbacks version 2</option>
+  <option id="callbacks-v3">Callbacks version 3</option>
+  <option id="continuous-horizontal">Continuous horizontal</option>
+  <option id="continuous-vertical">Continuous vertical</option>
+  <option id="parallax">Parallax</option>
+  <option id="css3">CSS3</option>
+  <option id="drag-and-move">Drag And Move</option>
+  <option id="easing">Easing</option>
+  <option id="fading-effect">Fading Effect</option>
+  <option id="fixed-headers">Fixed headers</option>
+  <option id="gradient-backgrounds">Gradient backgrounds</option>
+  <option id="interlocked-slides">Interlocked Slides</option>
+  <option id="looping">Looping</option>
+  <option id="methods">Methods</option>
+  <option id="navigation-vertical">Vertical navigation dots</option>
+  <option id="navigation-horizontal">Horizontal navigation dots</option>
+  <option id="navigation-tooltips">Navigation tooltips</option>
+  <option id="no-anchor">No anchor links</option>
+  <option id="normal-scroll">Normal scrolling</option>
+  <option id="normalScrollElements">Normal scroll elements</option>
+  <option id="offset-sections">Offset sections</option>
+  <option id="one-section">One single section</option>
+  <option id="reset-sliders">Reset sliders</option>
+  <option id="responsive-auto-height">Responsive Auto Height</option>
+  <option id="responsive-height">Responsive Height</option>
+  <option id="responsive-width">Responsive Width</option>
+  <option id="responsive-slides">Responsive Slides</option>
+  <option id="scrollBar">Scroll bar enabled</option>
+  <option id="scroll-horizontally">Scroll horizontally</option>
+  <option id="scrollOverflow">Scroll inside sections and slides</option>
+  <option id="scrollOverflow-reset">ScrollOverflow Reset</option>
+  <option id="lazy-load">Lazy load</option>
+  <option id="scrolling-speed">Scrolling speed</option>
+  <option id="trigger-animations">Trigger animations</option>
+  <option id="vue-fullpage">Vue-fullpage component</option>
+</select>
+
+
+<div id="header">Header</div>
+<div id="footer">Footer</div>
+
+<div id="fullpage">
+	<div class="section " id="section0">
+		<div class="intro">
+			<h1>Fixed elements</h1>
+			<p>Create your own headers and footers</p>
+		</div>
+	</div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+				<h1>How to do it</h1>
+				<p>
+					You will need to place your header and footer outside the plugin's wrapper.
+					This way it won't move on scrolling. Take a look at the source code of this page.
+				</p>
+			</div>
+		</div>
+
+	    <div class="slide" id="slide2">
+			<h1>Slide 2</h1>
+			<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
+		</div>
+
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Enjoy it</h1>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/fullpage.js"></script>
+<script type="text/javascript" src="examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        anchors: ['firstPage', 'secondPage', '3rdPage'],
+        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+        css3: true
+    });
+</script>
+
+</body>
+=======
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>About</title>
+	<meta name="author" content="Qiuyu li" />
+	<meta name="description" content="About page with img background" />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fixed,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" href="css/index_style.css" />
+	<link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.css" />
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: 'Oswald', sans-serif;
+		margin:0;
+		padding:0;
+		color:#fff
+	}
+
+	p{
+		font-size: 1.5em;
+		font-family: 'Open Sans', sans-serif;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3,
+	#section4,
+    #slide1,
+    #slide2,
+	#slide3{
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
+	/* Defining each sectino background and styles
+	* --------------------------------------- */
+	#section0{
+		background-image: url(/img/Shanghai_why.jpg);
+	}
+	#section0 h1{
+		top: 50%;
+		transform: translateY(-50%);
+		position: relative;
+		font-size: 5em;
+	}
+	#section1{
+		background: color #000;
+		padding: 6% 0 0 0;
+	}	
+	#section2{
+		background-image: url(/img/Shanghai_answer.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section4{
+		background-image: url(/img/Shanghai_group.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section4 h1{
+		color: #000;
+	}
+
+
+	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(/img/Shanghai_people.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide2{
+		background-image: url(/img/Shanghai_transportation.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide3{
+		background-image: url(/img/Shanghai_landmark.jpg);
+		padding: 6% 0 0 0;
+	}
+
+	img.workflow { 
+		position: absolute;
+		left: 100px;
+		top: 150px
+    }
+
+	h1.workflow{
+		position: absolute;
+		left: 550px;
+		top: 150px;
+		font-size: 2.5em;
+	}
+	p.workflow{
+		position: absolute;
+		left: 750px;
+		top: 250px;
+		font-size: 1em;
+		text-align:left;
+	}
+
+	h1.answer{
+		position: absolute;
+		left:80px;
+		top: 120px;
+		font-size: 4em;
+	}
+
+	p.answer{
+		position: absolute;
+		left:80px;
+		top: 340px;
+		font-size: 1.2em;
+		text-align:left;
+	}
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+</head>
+<body>
+	<div class="main">
+		<header>
+			<h1 class="logo" style="color:#fff;"> SHH </h1>
+		</header>
+
+		<footer>
+		   <!-- 向下滚动 -->
+			<div id="explore">
+				<b> Explore next part</b>
+			</div>
+			
+			<a href="/people&economic.html">
+				<div class="scroll-down"></div>
+			</a>
+		</footer>
+	</div>
+	
+<div id="fullpage">
+	<div class="section " id="section0">
+		<h1 style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Why Shanghai</h1>
+	    <p style="width:70%; line-height: 500px; margin:0 auto;">The reasons we select Shanghai as our target</p>
+	</div>
+
+	<div class="section" id="section1">
+		<img class="workflow" src="/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
+		<h1 class="workflow" style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Development of Shanghai</h1>
+		<p class="workflow" style="width:40%; color: #fff;">Shanghai is China’s economic and cultural center. Unlike other cities in the world, Shanghai’s development is closely related to China’s modern history. It took only a hundred years from a small county town to become the largest port in the Far East, which is also different from other cities in China. Shanghai's development has never stopped.<br /><br />When Shanghai residents talk about life in Shanghai, what are they actually talking about? Such conversations have occurred every day in the past few decades, and the answer to this question varies with the development of the city.</p>
+	</div>
+
+	<div class="section" id="section2">
+		<h1 class="answer" style="color:#fff">DIFFERENT ANSWERS<br />AT DIFFERENT TIMES</h1>
+		<p class="answer" style="width:50%; color:#fff">Our team will travel through different eras and review the answers that Shanghai has given from the aspects of humanities, economy, transportation and landmarks.</p>
+	</div>	
+
+	<div class="section" id="section3">
+		<div class="slide" id="slide1"><h1>People and Economic</h1></div>
+		<div class="slide" id="slide2"><h1>Transportation</h1></div>
+		<div class="slide" id="slide3"><h1>Landmark</h1></div>
+	</div>
+	<div class="section" id="section4"><h1>our team here</h1></div>
+</div>
+<!-- 想把菜单栏一直显示，不知道为啥第二部分会遮住，而且下面这段代码在body里放的位置不同，不如放在上一段fullpage前面，出来的效果也不同不知道为啥 -->
+<div class="menu">
+	<ul>
+		<li><a href="landmark.html">Landmark</a></li>
+		<li><a href="transportation.html">Transportation</a></li>
+		<li><a href="people&economic.html">People and Economic</a></li>
+		<li class="active"><a href="about.html">About</a></li>
+		<li><a href="index.html">Home</a></li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="js/fullpage.js"></script>
+<script type="text/javascript" src="js/examples.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false,
+
+        //to avoid problems with css3 transforms and fixed elements in Chrome, as detailed here: https://github.com/alvarotrigo/fullPage.js/issues/208
+        css3:false
+    });
+</script>
+</body>
+>>>>>>> 317da65... new about page
+</html>
