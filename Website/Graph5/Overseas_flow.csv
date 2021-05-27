@@ -1,0 +1,49 @@
+Type,Country&Region,Education,Purpose,value
+Foreigner,Japan,Higher Education,Business or employment,11976
+Foreigner,Japan,Higher Education,Other,9396
+Foreigner,Japan,No Higher Education,Business or employment,2242
+Foreigner,Japan,No Higher Education,Other,6070
+Foreigner,USA,Higher Education,Business or employment,11356
+Foreigner,USA,Higher Education,Other,5637
+Foreigner,USA,No Higher Education,Business or employment,2635
+Foreigner,USA,No Higher Education,Other,3974
+Foreigner,Korea,Higher Education,Business or employment,6182
+Foreigner,Korea,Higher Education,Other,7258
+Foreigner,Korea,No Higher Education,Business or employment,1656
+Foreigner,Korea,No Higher Education,Other,4668
+Foreigner,France,Higher Education,Business or employment,4001
+Foreigner,France,Higher Education,Other,1386
+Foreigner,France,No Higher Education,Business or employment,506
+Foreigner,France,No Higher Education,Other,1589
+Foreigner,Germany,Higher Education,Business or employment,3515
+Foreigner,Germany,Higher Education,Other,1655
+Foreigner,Germany,No Higher Education,Business or employment,758
+Foreigner,Germany,No Higher Education,Other,965
+Foreigner,Canada,Higher Education,Business or employment,3506
+Foreigner,Canada,Higher Education,Other,1265
+Foreigner,Canada,No Higher Education,Business or employment,529
+Foreigner,Canada,No Higher Education,Other,1235
+Foreigner,Sinapore,Higher Education,Business or employment,3663
+Foreigner,Sinapore,Higher Education,Other,269
+Foreigner,Sinapore,No Higher Education,Business or employment,672
+Foreigner,Sinapore,No Higher Education,Other,1353
+Foreigner,Australia,Higher Education,Business or employment,3227
+Foreigner,Australia,Higher Education,Other,1130
+Foreigner,Australia,No Higher Education,Business or employment,273
+Foreigner,Australia,No Higher Education,Other,790
+Foreigner,UK,Higher Education,Business or employment,2640
+Foreigner,UK,Higher Education,Other,926
+Foreigner,UK,No Higher Education,Business or employment,267
+Foreigner,UK,No Higher Education,Other,624
+Non-Mainland Chinese,HK,Higher Education,Business or employment,7661
+Non-Mainland Chinese,HK,Higher Education,Other,3996
+Non-Mainland Chinese,HK,No Higher Education,Business or employment,293
+Non-Mainland Chinese,HK,No Higher Education,Other,7350
+Non-Mainland Chinese,Macao,Higher Education,Business or employment,234
+Non-Mainland Chinese,Macao,Higher Education,Other,266
+Non-Mainland Chinese,Macao,No Higher Education,Business or employment,58
+Non-Mainland Chinese,Macao,No Higher Education,Other,352
+Non-Mainland Chinese,Taiwan,Higher Education,Business or employment,12686
+Non-Mainland Chinese,Taiwan,Higher Education,Other,18071
+Non-Mainland Chinese,Taiwan,No Higher Education,Business or employment,5647
+Non-Mainland Chinese,Taiwan,No Higher Education,Other,8496

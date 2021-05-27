@@ -1,0 +1,654 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/VizabiSharedComponents.css" rel="stylesheet" />
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        #chart {
+            text-align: center;
+        }
+
+        circle {
+            opacity: 1;
+            stroke: #090606;
+            stroke-width: 1px;
+        }
+
+        .tooltip {
+            font: bold 25px Verdana;
+            /*font-family: simsun;*/
+            font-size: 12px;
+            width: 120px;
+            height: auto;
+            color: #555;
+            position: absolute;
+            text-align: left;
+            border-style: solid;
+            border-width: 2px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin: 5px 15px 10px 20px;
+            padding: 0;
+            font: bold 16px Verdana;
+        }
+
+        .symbol {
+            font-family: FontAwesome;
+            font-size: 16px;
+        }
+
+        .icon-box {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border: 1px solid #555;
+            border-radius: 11px;
+            text-align: center;
+        }
+
+            .icon-box i {
+                margin-left: -2px;
+            }
+        .vzb-tool{
+            width:960px;
+            margin:0 auto;
+        }
+        .vzb-tool {
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: auto 60px;
+            grid-template-rows: auto 50px;
+        }
+        .vzb-icon-play{
+            display:none;
+        }
+
+        /*2021-05-26 start */
+        .axis path {
+            stroke: #fff;
+        }
+
+        .axis line {
+            stroke: #fff; /* 2021-05-26 更改 */
+        }
+        .txt-time text {
+            fill: #fff; /* 2021-05-26 更改 */
+        }
+        text{
+            fill:#fff !important;
+        }
+        .fa-question{
+            color:#fff;
+        }
+        .vzb-timeslider{
+            background-color:transparent !important;
+        }
+        .vzb-tool {
+            margin-top:20px;
+        }
+            .vzb-tool .vzb-ts-slider .vzb-ts-slider-svg .vzb-ts-slider-axis .vzb-axis-line {
+                filter: alpha(opacity=100);
+                opacity: 1;
+                fill: none;
+                stroke: #888;
+                stroke-opacity: 0.5;
+                stroke-width: 5px;
+                stroke-linecap: round
+            }
+        /*2021-05-26 end */
+    </style>
+</head>
+<body>
+    <div class="icon-box x-icon-box">
+        <i class="fa fa-question" aria-hidden="true"></i>
+    </div>
+    <div class="icon-box y-icon-box">
+        <i class="fa fa-question" aria-hidden="true" style="transform: rotate(-90deg);"></i>
+    </div>
+
+    <div id="chart"></div>
+    <div class="vzb-tool">
+        <div class="vzb-animationcontrols">
+            <div class="vzb-timeslider vzb-ts-hide-play-button vzb-ts-show-value-when-drag-play">
+                <div class="vzb-ts-slider" style="margin-top: 8px;">
+                    <svg class="vzb-ts-slider-svg">
+                        <g transform="translate(80,-5)">
+                            <g class="vzb-ts-slider-axis" transform="translate(0,22.5)">
+                            <g class="vzb-axis-value vzb-hidden">
+                                <text class="stroke" transform="rotate(0)" x="0" y="8" dx="0" dy=".72em" style="text-anchor: middle;"></text></g>
+                            <g class="vzb-axis-value vzb-axis-value-shadow" style="opacity: 0;">
+                                <text transform="rotate(0)" x="0" y="8" dx="0" dy=".72em" style="text-anchor: middle;"></text></g>
+                            <line class="vzb-axis-line" x1="-1" x2="860" y1="0" y2="0"></line></g>
+                            <g class="vzb-ts-slider-progress" transform="translate(0,22.5)"></g>
+                            <g class="vzb-ts-slider-select" transform="translate(0,22.5)"></g>
+                            <line class="vzb-ts-slider-forecastboundary vzb-hidden"></line>
+                            <circle class="vzb-ts-slider-handle" transform="translate(0,22.5)" r="11" cx="0"></circle>
+                            <text class="vzb-ts-slider-value stroke" text-anchor="middle" dy="-0.7em" transform="translate(0,18.5)">1837</text>
+                            <line class="vzb-ts-slider-slide" transform="translate(0,22.5)" x1="0" x2="880" style="stroke-width: 22px;"></line>
+                        </g>
+                    </svg>
+                </div>
+                <div class="vzb-ts-btns" style="margin-left: 24px;">
+                    <button class="vzb-ts-btn">
+                        <svg class="vzb-icon vzb-icon-play" viewBox="3 3 42 42" xmlns="http://www.w3.org/2000/svg">
+                            <path xmlns="http://www.w3.org/2000/svg" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z"></path>
+                        </svg>
+                        <svg class="vzb-icon vzb-icon-pause" viewBox="3 3 42 42" xmlns="http://www.w3.org/2000/svg">
+                            <path xmlns="http://www.w3.org/2000/svg" d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-2 28h-4V16h4v16zm8 0h-4V16h4v16z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="d3/d3.v5.min.js"></script>
+    <!--<script src="data/res2.js"></script>-->
+    <script>
+        var width = 960;
+        var height = 430;
+        var margins = {
+            top: 50, left: 85, bottom: 40, right: 50
+        };
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+        var datalist = [];
+        var transition = 1000;
+        var transitionName = "a";
+        var index = 0;
+        var yaxisName = "GDP(US$bn)";
+        var xaxisName = "log(Population)";
+        var zaxisName = "City";
+        var waxisName = "";
+        var waxisShowName = "";
+        var minX = Number.MAX_VALUE;
+        var maxX = 0;
+        var maxY = 0;
+        var minW = Number.MAX_VALUE;
+        var maxW = 0;
+        var timeFontSize = 180;
+        var objDataMap = {};
+        var baseid = 0;
+        var maxR = 40;
+        var chartTitleFontSize = 24;
+        var chartTitle = "2001 - 2017 GDP and Population Change in World's Top 10 Cities";
+        var isPlay = false;
+        var xaxisTitleToopText = "Our team checked the accurate population numbers of each city over the years from statistical offices of corresponding countries, and used log transformation to make the graph look better.";
+        var yaxisTitleToopText = "Obtain the nominal GDP in the national currency from the statistical offices of each country, and convert the unit with the dollar exchange rate of the corresponding fiscal year.";
+        var svg = d3.select("#chart")
+            .append('svg')
+            .attr('width', width + margins.left + margins.right)
+            .attr('height', height + margins.top + margins.bottom)
+            .append("g")
+            .attr('transform', 'translate(' + margins.left + ',' + margins.top + ')');
+
+        var chartTitleLeft = (width - chartTitle.length * chartTitleFontSize * 0.5) / 2;
+        svg.append("g")
+            .attr("class", "x-label")
+            .attr("transform", "translate(" + chartTitleLeft + ",-15)")
+            .append("text")
+            .style("font-size", chartTitleFontSize)
+            .style("font-weight", 700)
+            .text(chartTitle)
+            ;
+
+        // 汽泡半径比例尺
+        var scaleR = d3.scaleLinear().range([5, maxR]);
+        // 汽泡颜色比例尺
+        var colors = d3.scaleOrdinal(d3.schemeCategory10);
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0.0);
+
+        d3.select(".vzb-ts-btn")
+            .on("click", function () {
+                d3.selectAll(".vzb-icon").attr("style", "display:none!important");
+                if (isPlay) {
+                    pause();
+                }
+                else {
+                    d3.selectAll(".vzb-icon.vzb-icon-pause").attr("style", "display:block!important");
+                    timerStart();
+                }
+                isPlay = !isPlay;
+            });
+
+        // ------------------------ 初始坐标轴 start --------------------------------
+        var xScaleList = [];
+        var scaleXDomainList = [
+            5.5, 5.7, 5.9, 6.1, 6.3, 6.5, 6.7, 6.9, 7.1, 7.3, 7.5
+        ];
+        for (var i = 0; i < scaleXDomainList.length; i++) {
+            scaleXDomainList[i] = scaleXDomainList[i]
+        }
+        let scaleX = d3.scaleBand()
+            .domain(scaleXDomainList)
+            .range([0, width])
+            ;
+
+        var yScaleList = [];
+        var scaleYDomainList = [
+            0, 25, 50, 75, 100, 125, 150, 175, 200
+        ];
+        for (var i = 0; i < scaleYDomainList.length; i++) {
+            scaleYDomainList[i] = scaleYDomainList[i]*9;
+        }
+        let scaleY = d3.scaleBand()
+            .domain(scaleYDomainList)
+            .range([height, 0]);
+
+        //for (var i = 1; i < scaleXDomainList.length; i++) {
+        //    xScaleList.push(d3.scaleLinear()
+        //        .domain([scaleXDomainList[i - 1], scaleXDomainList[i]])
+        //        .range([0, scaleX.bandwidth()]));
+        //}
+// 弹窗
+        function getTooltipContent(list, title) {
+            var tpl = "<div style='margin-top:5px;'><span>"
+            tpl += "{name}: </span>{value}</div>";
+            var html = "<div style='padding-left:20px;padding-right: 20px;padding-bottom:10px;font-size:12px;'>";
+            html += "<h2>" + title + "</h2>"
+            list.forEach(function (dataItem) {
+                name = dataItem.name, value = dataItem.value;
+                html += tpl.replace("{name}", name).replace("{value}", value);
+            });
+            html += "</div>";
+            return html;
+        }
+// 暂停播放
+        function play() {
+            var sWidth = 860;
+            var text = d3.select(".vzb-ts-slider-svg .vzb-ts-slider-value")
+                .attr("style", "display:block!important");
+            if (index < datalist.length) {
+                text.text(datalist[index].YEAR.toString());
+            }
+            var sleft = sWidth / datalist.length * (index+1);
+            d3.select(".vzb-ts-slider-svg .vzb-ts-slider-handle")
+                .transition(transitionName)
+                .duration(transition)
+                .attr("cx", sleft)
+                .ease(d3['easeLinear'])
+                ;
+            text.transition(transitionName)
+                .duration(transition)
+                .attr("transform", "translate(" + sleft + ",18.5)")
+                .ease(d3['easeLinear']);
+        }
+
+        function pause() {
+            d3.selectAll(".vzb-icon.vzb-icon-play").attr("style", "display:block!important");
+            d3.selectAll(".vzb-icon.vzb-icon-pause").attr("style", "display:none!important");
+            if (window.timer)
+                window.timer.stop();
+        }
+
+        function getCircleX(item) {
+            var p = 0;
+            for (var i = 1; i < scaleXDomainList.length; i++) {
+                if (item[xaxisName] <= scaleXDomainList[i]) {
+                    var subX = d3.scaleLinear()
+                        .domain([scaleXDomainList[i - 1], scaleXDomainList[i]])
+                        .range([0, scaleX.bandwidth()]);
+                    return scaleX.bandwidth() * (i - 1) + subX(item[xaxisName]);
+                }
+            }
+            return 0;
+        }
+
+        function getCircleY(item) {
+            var p = 0;
+            for (var i = 1; i < scaleYDomainList.length; i++) {
+                if (item[yaxisName] <= scaleYDomainList[i]) {
+                    var subY = d3.scaleLinear()
+                        .domain([scaleYDomainList[i - 1], scaleYDomainList[i]])
+                        .range([scaleY.bandwidth(), 0]);
+                    return scaleY.bandwidth() * (scaleYDomainList.length - i) + subY(item[yaxisName]);
+                }
+            }
+            return 0;
+        }
+
+        // 比例尺,连续-连续
+        var x = d3.scaleLinear()
+            .domain([0, 1000])
+            .range([0, width]);
+
+        var y = d3.scaleLinear()
+            .domain([0, 1000])
+            .range([height, 0]);
+
+        // 绘制X轴标题
+        var xaxisLeft = (width - xaxisName.length * 10) / 2;
+        svg.append("g")
+            .attr("class", "x-label")
+            .attr("transform", "translate(" + xaxisLeft + "," + (height + 40) + ")")
+            .append("text")
+            .text(xaxisName)
+            ;
+        var xiconStyle = "left:" + ((window.innerWidth - width) / 2 + (xaxisLeft + xaxisName.length * 10 + 20)) + "px;";
+        xiconStyle += "top:" + (height + margins.top + 28) + "px";
+        d3.select(".x-icon-box")
+            .attr("style", xiconStyle)
+            .on('mouseover', function () {
+                var str = xaxisTitleToopText;
+                var strhtml = "<div style='padding-left:20px;padding-right: 20px;padding-bottom:10px;font-size:12px;'>";
+                strhtml += "<div style='margin-top:5px;max-width:260px;font-family: simsun;'>"
+                    + str
+                    + "</div>";
+                strhtml += "</div>";
+                tooltip.html(strhtml)
+                    .style("width", "auto")
+                    .style("height", "auto")
+                    .style("left", (d3.event.pageX - 60) + "px")
+                    .style("top", (d3.event.pageY - 80) + "px")
+                    .style("opacity", 1.0)
+                    ;
+            })
+            .on('mouseout', function (datum) {
+                tooltip.style("width", 0)
+                    .style("height", 0)
+                    .style("opacity", 0.0);
+            });
+
+        // 绘制X轴单位
+        var xaxisUnit = "Log transformation of population"
+        svg.append("g")
+            .attr("class", "x-unit")
+            .attr("transform", "translate(" + (width - xaxisUnit.length * 10) + "," + (height - 13) + ")")
+            .append("text")
+            .style("fill", "#ccc")
+            .text(xaxisUnit)
+            ;
+        //  绘制Y轴标题
+        var yaxisTitle = yaxisName;
+        svg.append("g")
+            .attr("class", "y-label")
+            .attr("transform", "translate(-60," + (height + yaxisTitle.length * 8) / 2 + ")")
+            .append("text")
+            .style("transform", "rotate(-90deg)")
+            .text(yaxisTitle)
+            ;
+        var yiconStyle = "left:" + ((window.innerWidth - width) / 2 - 60) + "px;";
+        yiconStyle += "top:" + ((height + yaxisTitle.length * 8) / 2 - yaxisTitle.length * 8 + 10) + "px";
+        d3.select(".y-icon-box")
+            .attr("style", yiconStyle)
+            .on('mouseover', function () {
+                var str = yaxisTitleToopText;
+                var strhtml = "<div style='padding-left:20px;padding-right: 20px;padding-bottom:10px;font-size:12px;'>";
+                strhtml += "<div style='margin-top:5px;max-width:260px;font-family: simsun;'>"
+                    + str
+                    + "</div>";
+                strhtml += "</div>";
+                tooltip.html(strhtml)
+                    .style("width", "auto")
+                    .style("height", "auto")
+                    .style("left", (d3.event.pageX - 60) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px")
+                    .style("opacity", 1.0)
+                    ;
+            })
+            .on('mouseout', function (datum) {
+                tooltip.style("width", 0)
+                    .style("height", 0)
+                    .style("opacity", 0.0);
+            })
+            ;
+        //  绘制Y轴单位
+        var yaxisUnit = "US$bn";
+        svg.append("g")
+            .attr("class", "y-unit")
+            .attr("transform", "translate(18," + (yaxisUnit.length * 8) + ")")
+            .append("text")
+            .style("transform", "rotate(-90deg)")
+            .style("fill", "#ccc")
+            .text(yaxisUnit)
+            ;
+
+
+        // 坐标轴
+        var xAxis = d3.axisBottom()
+            .scale(scaleX)
+            .tickSize(-height);
+
+        var yAxis = d3.axisLeft()
+            .scale(scaleY)
+            .tickFormat(function (d) {
+                if (d === 0) {
+                    return "";
+                }
+                return d;
+            })
+            .tickSize(-width);
+
+
+        // ------------------------ 初始坐标轴 end --------------------------------
+
+        // ------------------------ 动态坐标轴 start --------------------------------
+        function randerAxis(opt) {
+            x.domain([0, opt.maxX]);
+            y.domain([0, opt.maxY]);
+
+            xAxis.scale(scaleX);
+            yAxis.scale(scaleY);
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (height) + ")")
+                .call(xAxis)
+                .append("text")
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                ;
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("y", 6)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                ;
+
+            svg.select(".x.axis")
+                .call(xAxis);
+            svg.selectAll(".x .tick")
+                .attr("transform", (d, i) => "translate(" + (scaleX.bandwidth() * i) + ",0)");
+
+            svg.select(".y.axis")
+                .call(yAxis);
+            svg.selectAll(".y .tick")
+                .attr("transform", (d, i) => "translate(0," + (scaleY.bandwidth() * (scaleYDomainList.length - i)) + ")");
+        }
+
+        // ------------------------ 动态坐标轴 end ----------------------------------
+
+
+        // ------------------------ 动态时间 start --------------------------------
+        function randerTime(year) {
+            var timeWidth = year.length * timeFontSize;
+            var timeLeft = (width - timeWidth) / 2 + timeFontSize / 1.3;
+            var timeTop = (height - timeFontSize) / 2 + timeFontSize / 1.3;
+
+            var _g_txttime = svg.select(".txt-time");
+            if (_g_txttime.size() <= 0) {
+                _g_txttime = svg.append("g")
+                    .attr("class", "txt-time")
+                    .attr('transform', 'translate(' + timeLeft + ',' + timeTop + ')');
+                _g_txttime.append("text")
+                    .style("font-size", timeFontSize)
+                    .text(year);
+            }
+            else {
+                _g_txttime.select("text").text(year);
+            }
+        }
+        // ------------------------ 动态时间 end ----------------------------------
+
+        // ------------------------ 动态汽泡 start --------------------------------
+        function randerBubbles(inlist) {
+            var currentObj = {};
+            inlist.forEach(function (d) {
+                if (objDataMap[d[zaxisName]] === undefined) {
+                    objDataMap[d[zaxisName]] = d;
+                    objDataMap[d[zaxisName]].id = baseid++;
+                }
+                else {
+                    objDataMap[d[zaxisName]].YEAR = d.YEAR;
+                    objDataMap[d[zaxisName]][xaxisName] = d[xaxisName];
+                    objDataMap[d[zaxisName]][yaxisName] = d[yaxisName];
+                }
+                if (currentObj[d[zaxisName]] === undefined) {
+                    currentObj[d[zaxisName]] = d;
+                }
+            });
+            var list = Object.values(objDataMap);
+            scaleR.domain([minW, maxW]);
+
+            list.forEach(function (item) {
+                if (x(item[xaxisName]) > width) {
+                    console.log("maxX=" + maxX);
+                    console.log(item[xaxisName]);
+                }
+                if (svg.select(".node-" + item.id).size() <= 0) {
+                    svg.append("circle")
+                        .attr("class", "node node-" + item.id)
+                        .attr("xvalue", item[xaxisName])
+                        .attr("yvalue", item[yaxisName])
+                        .style("fill", d => colors(item[zaxisName]))
+                        .attr("cx", d => {
+                            var resultX = getCircleX(item);
+                            if (resultX <= 0) {
+                                console.log(resultX);
+                            }
+                            return resultX;
+                        })
+                        .attr("cy", d => getCircleY(item))
+                        .attr("r", d => {
+                            return scaleR(item[waxisName])
+                        })
+                        .on('mouseover', function (datum) {
+                            var str = getTooltipContent([
+                                { name: yaxisName, value: item[yaxisName] },
+                                { name: xaxisName, value: item[xaxisName] },
+                                { name: "Area（k㎡）", value: item[waxisShowName] }
+                            ], item[zaxisName]);
+                            tooltip.html(str)
+                                .style("width", "auto")
+                                .style("height", "auto")
+                                .style("left", (d3.event.pageX - 60) + "px")
+                                .style("top", (d3.event.pageY + 20) + "px")
+                                .style("opacity", 1.0)
+                                ;
+                            var currentR = scaleR(item[waxisName]) * 2.3;
+                            if (currentR > maxR + 10) {
+                                currentR = maxR + 10;
+                            }
+                            if (currentR < 20) {
+                                currentR = 20;
+                            }
+                            d3.select(this)
+                                .transition()
+                                .duration(700)
+                                .attr("r", currentR);
+                        })
+                        .on('mouseout', function (datum) {
+                            tooltip.style("width", 0)
+                                .style("height", 0)
+                                .style("opacity", 0.0);
+                            d3.select(this)
+                                .transition()
+                                .duration(700)
+                                .attr("r", scaleR(item[waxisName]));
+                        })
+                        ;
+                }
+                else {
+                    svg.select(".node-" + item.id)
+                        .attr("xvalue", item[xaxisName])
+                        .attr("yvalue", item[yaxisName])
+                        .transition(transitionName)
+                        .duration(transition)
+                        .attr("cx", d => getCircleX(item))
+                        .attr("cy", d => getCircleY(item))
+                        .attr("r", d => scaleR(item[waxisName]));
+                }
+                if (currentObj[item[zaxisName]] === undefined) {
+                    svg.select(".node-" + item.id)
+                        .transition(transitionName)
+                        .duration(transition)
+                        .style("opacity", 0)
+                        .remove();
+                }
+            });
+        }
+        // ------------------------ 动态汽泡 end ----------------------------------
+
+        // ------------------------ 加载数据 start --------------------------------
+        function init(data) {
+            var dataMap = {};
+            data.forEach(function (item) {
+                item.YEAR = item.YEAR * 1;
+                item[xaxisName] = item[xaxisName] * 1;
+                if (isNaN(item[xaxisName])) {
+                    item[xaxisName] = 0;
+                }
+                item[yaxisName] = item[yaxisName] * 1;
+                if (isNaN(item[yaxisName])) {
+                    item[yaxisName] = 0;
+                }
+
+                item[waxisName] = item[waxisName] * 1;
+                if (isNaN(item[waxisName])) {
+                    item[waxisName] = 0;
+                }
+
+                if (dataMap[item.YEAR] === undefined) {
+                    dataMap[item.YEAR] = { YEAR: item.YEAR, list: [] };
+                }
+                dataMap[item.YEAR].list.push(item);
+
+                maxX = Math.max(item[xaxisName], maxX);
+                minX = Math.min(item[xaxisName], minX);
+                maxY = Math.max(item[yaxisName], maxY);
+
+                maxW = Math.max(item[waxisName], maxW);
+                minW = Math.min(item[waxisName], minW);
+            });
+            datalist = Object.values(dataMap);
+            datalist.sort(function (a, b) { return a.YEAR - b.YEAR; });
+
+            randerAxis({ maxX: maxX, maxY: maxY });
+            //timerStart();
+            pause();
+        }
+
+        function timerStart() {
+            window.timer = d3.interval(function (duration) {
+                if (index >= datalist.length || !datalist[index]) {
+                    window.timer.stop();
+                    pause();
+                    return;
+                }
+                randerTime(datalist[index].YEAR.toString());
+                randerBubbles(datalist[index].list);
+                play();
+                index++;
+            }, transition);
+        }
+        d3.csv("data/气泡图数据.csv?v=3").then(function (data2) {
+            waxisName = data2.columns[4];
+            waxisShowName = data2.columns[7];
+            init(data2);
+        });
+                        // ------------------------ 加载数据 end --------------------------------
+    </script>
+</body>
+</html>

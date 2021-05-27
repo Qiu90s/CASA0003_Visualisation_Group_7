@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shanghai Engel Coefficient (1980 to 2019)</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+
+<script charset="utf-8" src="https://d3js.org/d3.v4.min.js"></script>
+<script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"></script>
+    
+<style>
+        
+    #chartContainer {width: 840px; margin: auto; margin-top: 50px; }
+    #chartContainer p {margin-left: 60px; margin-bottom: 5px; margin-top: 0; padding: 0;}
+    #charttitle {font: bold 22px  Verdana, sans-serif;}
+    /*2021-05-26 start */
+    text {
+        fill: #fff !important;
+    }
+
+    #charttitle {
+        color: #fff;
+    }
+
+    /*2021-05-26 end */
+</style>
+</head>
+
+<body>
+
+
+<div id="chartContainer">
+    <p id="charttitle">Shanghai Engel Coefficient in 1980 to 2019</p>
+</div>
+
+<script>
+
+
+    d3.csv("Engel.csv", function (SHData) {
+     // d3.csv("https://raw.githubusercontent.com/Qingyan-Liu/Visulization/main/Engel.csv", function(SHData) {
+            
+            console.log(SHData);
+            console.log(SHData[1]);
+          
+            var svg = dimple.newSvg("#chartContainer", 840, 840); 
+
+            var myChart = new dimple.chart(svg, SHData);  
+            myChart.setBounds(60, 15, 600, 400);            
+
+            myChart.defaultColors = [
+                new dimple.color("red")
+            ];
+
+
+            var x = myChart.addCategoryAxis("x", "year"); 
+
+            var y = myChart.addMeasureAxis("y", "Engel"); 
+            y.title = "Engel Coefficient (%)";
+
+            var s = myChart.addSeries(null, dimple.plot.line); 
+
+            myChart.draw(700); 
+
+            svg.selectAll("path.domain").style("stroke", "#CCC"); 
+            svg.selectAll("g.tick line").style("stroke", "#CCC");
+
+      });
+
+
+</script>
+
+</body>
+</html>

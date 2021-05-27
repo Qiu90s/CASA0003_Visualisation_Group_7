@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Shanghai International Airline</title>
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+ 
+ 
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+h1 {
+  font-size: 15px;
+  line-height: 30px;
+  color: white;
+}
+
+h2 {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  color: white;
+}
+    
+h3 {
+  font-size: 9px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  color: white;
+}
+    
+p {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  color: white;
+}
+    
+div {
+  color: skyblue;
+}
+    
+
+a {
+  text-decoration: none;
+  color: #2dc4b2;
+}
+
+#console {
+  position: absolute;
+  width: 350px;
+  height: 380px; 
+  margin: 30px;
+  padding: 10px 20px;
+  background-color: black;
+}
+    
+.session {
+  margin-bottom: 20px;
+}
+
+.row {
+  height: 20px;
+  width: 100%;
+  line-height: 25px;
+}
+
+.colors {
+  background: linear-gradient(to right, #2dc4b2, #3bb3c3, #669ec4, #8b88b6, #a2719b, #aa5e79);
+  margin-bottom: 5px;
+}
+
+
+.label {
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+}
+
+</style>
+    
+</head>
+    
+    
+    
+<body>
+    <div id="map"></div>
+    <div id='console'>
+        <h1>Development of International Airline 1973-2017</h1>
+        <p>Data: <a href='https://github.com/Qingyan-Liu/Visulization/blob/main/Destination_data.geojson'>Airlines from 1973 to 2017</a> </p>
+        
+        <h3>Description: The international airline data is divided into 2 parts: 1973-1996 from Shanghai Chronicles, 2005-2017 from China Eastern Airline. We get the data manual and publish it to the GitHub. Year 2017 shows all Shanghai international airlines operated by China Eastern Airlines. Time slider shows the change of airlines from 1973 to 2017.</h3>
+        
+        <div class="session">
+            <h2>Annual Passenger 2017 (Million)</h2>
+            <div class="row colors"></div>
+            <div class="row labels">
+                <div class="label">0</div>
+                <div class="label">15</div>
+                <div class="label">30</div>
+                <div class="label">45</div>
+                <div class="label">60</div>
+                <div class="label">75+</div>
+            </div>
+        </div>
+        
+        <div class='session' id='sliderbar'>
+            <h2>Year: <label id='active-year'>0</label></h2>
+            <input 
+                   id='slider' 
+                   class='row' 
+                   type='range' 
+                   min='1973' 
+                   max='2017' 
+                   step='1' 
+                   value='1973' 
+                   />
+        </div>
+    </div>
+    
+    
+
+    <script>
+mapboxgl.accessToken = 
+'pk.eyJ1IjoicWluZ3lhbmxpdSIsImEiOiJja20wamlpZmcwMGtmMndtczRxMDhoa2t1In0.ebicFgTpJVTUu3M130hQAQ'; //Put your mapbox access token here
+
+// Load a new map in the 'map' HTML div
+ var map = new mapboxgl.Map({
+ container: 'map', // container id
+ style: 'mapbox://styles/qingyanliu/ckp5b2cdc233q17nxafjstzm9', // Put your mapbox style ID here
+ center: [37.1625, 36.199167], // starting position [lng, lat]
+ zoom: 1.5 // starting zoom
+ });
+        
+ map.on('load', function() {
+      
+     
+     map.addLayer({
+         id: 'data',
+         type: 'circle',
+         source: {
+             type: 'geojson',
+             data: 'https://raw.githubusercontent.com/Qingyan-Liu/Visulization/main/Destination_data.geojson' 
+         },
+         
+          paint: {
+      'circle-color': [
+        'interpolate',
+        ['linear'],
+        ['number', ['get', 'passenger']],
+          0, '#2dc4b2',
+        15, '#3bb3c3',
+        30, '#669ec4',
+        45, '#8B88B6',
+        60, '#A2719B',
+        75, '#AA5E79'
+      ],
+      'circle-opacity': 1.0,
+         }
+     });
+     
+     var mypopup = new mapboxgl.Popup({offset:[1,1],closeButton: false});
+    map.on('mouseover', 'data', function(e) {
+        mypopup
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML('<b>Name: </b>' + e.features[0].properties.name + '<br /><b>Year: </b>' + e.features[0].properties.time + '<br /><b>Airport: </b>' + e.features[0].properties.airport + '<br /><b>2017 Annual Passenger : </b>Million ' + e.features[0].properties.passenger + '<br /><b>World Rank: </b>' + e.features[0].properties.rank)
+            .addTo(map);
+    });
+    
+    map.on('mouseenter', 'data', function(e) {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    
+    map.on('mouseleave', 'data', function(e) {
+        map.getCanvas().style.cursor = '';
+        mypopup.remove();
+    });    
+     
+ });
+        
+        
+        
+
+ map.on('load', function () {
+     
+ 
+     
+     
+     
+     map.addLayer({
+         'id': 'route',
+         'type': 'line',
+         'source': {
+             type: 'geojson',
+             data: 'https://raw.githubusercontent.com/Qingyan-Liu/Visulization/main/SH_AIRLINES.geojson' 
+         },
+         'layout': {
+             'line-join': 'round',
+             'line-cap': 'round'
+         },
+         'paint': {
+             'line-color': 'red',
+             'line-width': 1
+         }
+     });
+     
+     
+
+     
+    
+     
+     document.getElementById('slider').addEventListener('input', function(e) {
+        var time = parseInt(e.target.value);
+        
+        filterTime = ['==', ['number', ['get', 'time']], time];
+        map.setFilter('route', ['all', filterTime]);
+        
+       
+        var year = time + 0 ? time + 0 : 1973;
+            
+
+ 
+        document.getElementById('active-year').innerText = year;
+    });
+     
+     
+ });
+
+        
+ 
+        
+        
+</script>
+</body>
+</html>

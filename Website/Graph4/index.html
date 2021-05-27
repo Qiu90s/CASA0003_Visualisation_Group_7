@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #chord-chart {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        /*2021-05-26 start */
+        text {
+            fill: #fff !important;
+        }
+
+        .chart-title {
+            width: 98%;
+            line-height: 100px;
+            margin: 0 auto;
+            color: #fff;
+        }
+        /*2021-05-26 end */
+    </style>
+</head>
+<body>
+    <div id="chord-chart">
+        <h3 class="chart-title"> 2010 Population Flow of Shanghai's Neighboring Provinces</h3>
+    </div>
+    <script src="d3.min.js"></script>
+
+    <script>
+        var width = 600;
+        var height = width;
+
+        var innerRadius = Math.min(width, height) * 0.5 - 20;
+        var outerRadius = innerRadius + 6;
+        const textId = "O-text-1";
+
+        const svg = d3.select("#chord-chart")
+            .append("svg")
+            .attr("viewBox", [-width / 2, -height / 2, width, height]);
+
+        var chord = d3.chordDirected()
+            .padAngle(12 / innerRadius)
+            .sortSubgroups(d3.descending)
+            .sortChords(d3.descending);
+        var arc = d3.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(outerRadius);
+        var ribbon = d3.ribbonArrow()
+            .radius(innerRadius - 0.5)
+            .padAngle(1 / innerRadius);
+        var formatValue = x => `${x.toFixed(0)}`;
+
+        function getMatrix(names,data) {
+            const index = new Map(names.map((name, i) => [name, i]));
+            const matrix = Array.from(index, () => new Array(names.length).fill(0));
+            for (const { source, target, value } of data) matrix[index.get(source)][index.get(target)] += value;
+            return matrix;
+        }
+
+        d3.csv("domestic_people_flow.csv").then(function (data) {
+            var names = Array.from(new Set(data.flatMap(d => [d.source, d.target])));
+            var matrix = getMatrix(names,data);
+            const chords = chord(matrix);
+            var color = d3.scaleOrdinal(
+                names,
+                ["#1f77b4", "#d62728", "#2ca02c", "#ff7f0e",  "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]);
+            console.log(names);
+
+            svg.append("path")
+                .attr("id", textId)
+                .attr("fill", "none")
+                .attr("d", d3.arc()({ outerRadius, startAngle: 0, endAngle: 2 * Math.PI }));
+
+            svg.append("g")
+                .attr("fill-opacity", 0.75)
+                .selectAll("g")
+                .data(chords)
+                .join("path")
+                .attr("class", "path-item")
+                .attr("d", ribbon)
+                .attr("fill", d => color(names[d.target.index]))
+                .style("mix-blend-mode", "multiply")
+                .append("title")
+                .text(d => `${names[d.source.index]} inflow ${names[d.target.index]} ${formatValue(d.source.value)}`);
+
+            svg.append("g")
+                .attr("font-family", "sans-serif")
+                .attr("font-size", 10)
+                .selectAll("g")
+                .data(chords.groups)
+                .join("g")
+                .call(g => g.append("path")
+                    .attr("d", arc)
+                    .attr("fill", d => color(names[d.index]))
+                    .attr("stroke", "#fff"))
+                .call(g => g.append("text")
+                    .attr("dy", -3)
+                    .append("textPath")
+                    .attr("xlink:href", "#"+textId)
+                    .attr("startOffset", d => d.startAngle * outerRadius)
+                    .text(d => names[d.index]))
+                .call(g => g.append("title")
+                    .text(d => {
+                        return `${names[d.index]}owes ${formatValue(d3.sum(matrix[d.index]))}is owed ${formatValue(d3.sum(matrix, row => row[d.index]))}`
+                    }));
+
+            svg.selectAll(".path-item")
+                .on("mouseover", function (evt, d) {
+                    svg.selectAll(".path-item")
+                        .style("opacity", 0.2);
+                    d3.select(this)
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function (evt, d) {
+                    svg.selectAll(".path-item")
+                        .style("opacity", 1);
+                });
+        });
+
+    </script>
+</body>
+</html>
