@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>People and Economic</title>
+    <meta name="People and Economic" content="Qiuyu li" />
+    <meta name="description" content="People and Economic Page" />
+    <meta name="keywords" content="fullpage,jquery,demo,screen,fixed,fullscreen,backgrounds,full-screen" />
+    <meta name="Resource-type" content="Document" />
+    <link rel="stylesheet" href="css/index_style.css" />
+    <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/examples.css" />
+    <style>
+
+
+        /* Style for our header texts
+        * --------------------------------------- */
+        h1 {
+            font-size: 5em;
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff
+        }
+
+
+            h1.logo {
+                font-size: 2em;
+            }
+
+        p {
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        p.note{
+            font-size: 1em;
+            font-family: 'Oswald', sans-serif;
+            color: red;
+            margin: 0;
+            padding: 0;
+            font-weight:bolder
+        }
+    
+        /* background for body
+        * --------------------------------------- */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/Page_people.jpg") fixed center center;
+            padding: 6% 0 0 0;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /*iframe{
+            background-color:#fff;
+        }*/
+        .section{
+            margin-bottom:40px;
+        }
+    </style>
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <style>
+        .frame {
+            fill: none;
+            stroke: #000;
+        }
+
+        .axis text {
+            font: 14px sans-serif;
+        }
+
+        .axis line,
+        .axis circle {
+            fill: none;
+            stroke: #ddd;
+            /*stroke-dasharray: 4;*/
+        }
+
+        .axis:last-of-type circle {
+            stroke: steelblue;
+            stroke-dasharray: none;
+        }
+
+        .line {
+            fill: none;
+            stroke: orange;
+            stroke-width: 3px;
+        }
+
+        #chart {
+            text-align: center;
+        }
+
+        .chart-title {
+            text-align: center;
+        }
+
+        .tooltip {
+            font: bold 25px Verdana;
+            /*font-family: simsun;*/
+            font-size: 12px;
+            width: 120px;
+            height: auto;
+            color: #555;
+            position: absolute;
+            text-align: left;
+            border-style: solid;
+            border-width: 2px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .title-item-8 {
+            font-size: 35px;
+            color: red;
+            text-align: left;
+            border-left: 2px solid red;
+            padding-left: 6px;
+            font-weight: bolder;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .section-8-1 p {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .section-8-1 td{
+            padding:16px 64px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main" style="background-color:transparent;">
+        <header>
+            <h1 class="logo" style="color:#fff;"> SHH </h1>
+        </header>
+    </div>
+    <div id="fullpage2">
+        <div>
+            <h1 style="width: 80%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+                1.Development of Shanghai Economic
+            </h1>
+            <p style="width:80%;  margin:0 auto; ">
+                As mentioned in the people section, unlike the residents of many great cities,
+                a large part of Shanghai residents still retain memories of famine and war. <br>
+                </br>Nowadays rapid economic development is one of Shanghai's most famous labels.
+                When people are talking about Shanghai's economy,
+                they are talking about a miracle city that is growing faster than the others.
+                Our team used the D3 library to build 2 graphs to observe the economic development of Shanghai.
+            </p>
+            <br>
+            <p style="width:80%;  margin:0 auto;">
+                China is also a fast-growing economy.
+                Our team compared the income and expenditure levels of Shanghai residents and Chinese residents.(数据来源)<br></br>
+            </p>
+        </div>
+        <div class="section" id="section6">
+            <iframe height="655" width="80%" class="embed-responsive-item" src="Graph6/economic_barchart.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 6
+            </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                From 1980-2019, Shanghai urban residents’ disposable income has increased more than 100 times,
+                from 600-70,000 yuan.
+                It is 30,000 yuan higher than the national level in 2019.<br>
+                </br>In the world city list selected by GaWC in 2018,
+                there are a total of 10 cities with Alpha++ or Alpha+ levels,
+                and Shanghai has become one of them. So how does Shanghai compare with world-class cities?
+                Our team surveyed the GDP and population data of these 10 great cities in the past 20 years from their respective statistical bureaus
+                to trace their development process in recent years.
+            </p>
+            <br>
+        </div>
+        <div class="section" id="section1">
+            <iframe height="605" width="90%" class="embed-responsive-item" src="Graph7/index.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 7
+            </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                According to CITYMAYORS STATISITCS, in 2020,
+                Shanghai’s urban GDP ranks 16th among all cities in the world.
+                It has become one of the world’s most important economic centers.
+                <br>
+            </p>>
+            <h1 style="width: 80%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+                2.Consumer Interest and Living Standards
+            </h1>
+            <p style="width:80%;  margin:0 auto; ">
+                </br>Shanghai is obviously a city that has done a great job in economic development.
+                Furthermore, our team wants to know what every ordinary Shanghai resident is talking about when talking about the Shanghai economy?
+                In the past few decades, which consumer products have they talked more about every day?
+                What level of life are they living? We show it by making a racing bar chart.(数据来源) Refresh and zoom the page to watch this racing bar chart.
+            </p>
+            <br>
+        </div>
+        <div class="section" id="section8">
+            <iframe height="545" width="90%" class="embed-responsive-item" src="Graph8/Bar Chart Race.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 8
+            </p>
+        </div>
+        <div class="section section-8-1" id="section81" style="margin-top:-10px;">
+            <table style="width:80%;margin:0 auto;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h2 class="title-item-8">1980~</h2>
+                            <p>Food and clothes are the major goods.Basic life needs are the things Shanghai residents pay most attention to every day.</p>
+
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">1990~</h2>
+                            <p>Residents pay more attention to education and related service. Shanghai residents who have lived a wealthy start to focus on their children's education.</p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h2 class="title-item-8">2007~</h2>
+                            <p>Traffic and communication plays a more important role in Shanghai residents’ daily life.</p>
+
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">2015~</h2>
+                            <p>Residents become the most part that residents consume.Shanghai has become one of the most expensive cities in China to live in.</p>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                The line chart then shows the Engle coefficient of Shanghai residents,
+                which reflect their living standard.（数据来源）
+            </p>
+            <br>
+        </div>
+        <div class="section" id="section9">
+            <iframe height="555" width="55%" class="embed-responsive-item" src="Graph9/Engel.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 9
+            </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                From 1980-2019, Shanghai residents’ living standard has become better and they have had a wealthier life now.  <br>
+                </br>In the 1980s, Shanghai people could barely meet their daily needs and mainly spent money on food and clothes, but now, they have a wealthy life and they are paying more attention to residence, education and traffic.
+
+            </p>
+            <br>
+        </div>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="landmark.html">Landmark</a></li>
+            <li><a href="traffic.html">Traffic</a></li>
+            <li class="active"><a href="economic.html">Economic</a></li>
+            <li><a href="people.html">People</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+    <div class="main" style="background-color:transparent;position:relative;min-height:100px;">
+        <footer>
+            <!-- 向下滚动 -->
+            <div id="explore">
+                <b> Explore next part</b>
+            </div>
+
+            <a href="traffic.html">
+                <div class="scroll-down"></div>
+            </a>
+        </footer>
+    </div>
+</body>
+</html>

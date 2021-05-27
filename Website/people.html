@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>People and Economic</title>
+    <meta name="People and Economic" content="Qiuyu li" />
+    <meta name="description" content="People and Economic Page" />
+    <meta name="keywords" content="fullpage,jquery,demo,screen,fixed,fullscreen,backgrounds,full-screen" />
+    <meta name="Resource-type" content="Document" />
+    <link rel="stylesheet" href="css/index_style.css" />
+    <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="css/examples.css" />
+    <style>
+
+
+        /* Style for our header texts
+        * --------------------------------------- */
+        h1 {
+            font-size: 5em;
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff
+        }
+
+            h1.logo {
+                font-size: 2em;
+            }
+
+        p {
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        p.note{
+            font-size: 1em;
+            font-family: 'Oswald', sans-serif;
+            color: red;
+            margin: 0;
+            padding: 0;
+            font-weight:bolder
+        }
+    
+        /* background for body
+        * --------------------------------------- */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/Page_people.jpg") fixed center center;
+            padding: 6% 0 0 0;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <style>
+        .frame {
+            fill: none;
+            stroke: #000;
+        }
+
+        .axis text {
+            font: 14px sans-serif;
+        }
+
+        .axis line,
+        .axis circle {
+            fill: none;
+            stroke: #ddd;
+            /*stroke-dasharray: 4;*/
+        }
+
+        .axis:last-of-type circle {
+            stroke: steelblue;
+            stroke-dasharray: none;
+        }
+
+        .line {
+            fill: none;
+            stroke: orange;
+            stroke-width: 3px;
+        }
+
+        #chart {
+            text-align: center;
+        }
+
+        .chart-title {
+            text-align: center;
+        }
+
+        .tooltip {
+            font: bold 25px Verdana;
+            /*font-family: simsun;*/
+            font-size: 12px;
+            width: 120px;
+            height: auto;
+            color: #555;
+            position: absolute;
+            text-align: left;
+            border-style: solid;
+            border-width: 2px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        /*iframe{
+            background-color:#fff;
+        }*/
+        .section{
+            margin-bottom:30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main" style="background-color:transparent;">
+        <header>
+            <h1 class="logo" style="color:#fff;"> SHH </h1>
+        </header>
+    </div>
+    <div id="fullpage2">
+        <div>
+            <h1 style="width: 80%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+                1.The Growth of Shanghai Population
+            </h1>
+            <p style="width:80%;  margin:0 auto; ">
+                When we talk about Shanghainese, what are we actually talking about? 
+                Who are the Shanghai residents we talked about in different periods? 
+                Who have become the so-called Shanghai residents at different times?  </p>
+            <br>
+            <p style="width:80%;  margin:0 auto;">
+                To answer these questions, we must firstly learn about the demographic changes in Shanghai in recent years. 
+                Our team constructs the following D3 graphs to observe the trend of Shanghai's population growth.
+            </p>
+        </div>
+        <div class="section" id="section1">
+            <iframe height="550" width="70%" class="embed-responsive-item" src="Graph1/bar_residents.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowTransparency="yes"></iframe>
+                    <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                       Graph 1
+                    </p>
+        </div>
+        <div>                    
+            <p style="width:80%;  margin:0 auto;">
+                According to the data from Shanghai Open Data website, in the last 40 years, citizens in Shanghai had doubled from 11 million to over 24 million.
+            Shanghai’s population is growing rapidly in terms of numbers,
+            So how does Shanghai perform in terms of the population of each age group compared with other provinces in China?
+        </p>
+     </div>
+        <div class="section" id="section2">
+            <iframe height="730" width="80%" class="embed-responsive-item" src="Graph2/pop_life.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" 
+                    allowtransparency="yes"></iframe>
+                    <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                        Graph 2
+                     </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                Nevertheless, Shanghai's population and age structure have not taken an advanced position in China.
+                Hu, represented as Shanghai, ranked 9th according to the 2020 Chinese statistical yearbook.
+                It seems Shanghai does not have an advantage in labor force, but it still has a plenty of immigrant population flow which become the new Shanghai residents.
+            </p>
+            </div>
+        <div>
+        <h1 style="width: 80%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+            2.The Population Flow Related to Shanghai
+        </h1>
+
+        <p style="width:80%;  margin:0 auto;">
+            It would be strange to talk about Shanghainese 70 years ago, because at that time the proportion of people with local household registration in Shanghai was quite rare. 
+            Our team designs a pie chart to describe the proportion of the registered population of the provinces temporarily residing in Shanghai in 1950. Data comes from the book named <i>Research on the Population Changes in Old Shanghai</i>.<br>
+        </p>>
+        </div>
+        <div class="section" id="section3">
+            <iframe height="610" width="100%" class="embed-responsive-item" src="Graph3/pie.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+                    <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                        Graph 3
+                     </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto;">
+            In 1950, the second year of the founding of the People's Republic of China, most of Shanghai residents came from Jiangsu and Zhejiang province. These are two neighboring provinces of Shanghai. 
+            At that time, after war, China was in ruins, and traffic was interrupted. Only people from province next to shanghai can go to this land to make a living.</p>
+            <p style="width:80%;  margin:0 auto;text-indent:2em; font-size:1em;">
+            <br>When these first people who built Shanghai had settled down in this land, they talked about Shanghainese as a complex group with diverse accents. 
+            Based on the 2010 census data, a Chord Diagram was created to show the main provinces related to Shanghai's population flow. 
+            The arrows on the map represent the direction of population flow and the color of the population flow is the same as the color of the province people are currently living in.
+            The distance between different provinces and Shanghai on the circle reflects real geographic distance to a certain extent.
+            </p>
+        </div>
+        <div class="section" id="section4">
+            <iframe height="700" width="60%" class="embed-responsive-item" src="Graph4/index.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+                    <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                        Graph 4
+                     </p>
+        </div>
+        <div>
+        <p style="width:80%;  margin:0 auto;">
+            Combining the pie chart and chord diagram, our team found some interesting conclusions.
+            Due to the development of transportation in eastern China, which we will also talk about in the later traffic part, more people  from remote and poor provinces can go to Shanghai to make a living such as Anhui, Jiangxi, Henan and Sichuan.
+            On the other hand, because of the radiating effect of the economic center, Shanghai itself, people in the provinces surrounding Shanghai have lived a prosperous life, and they no longer need to leave their hometowns.
+            </p>
+        <p style="width:80%;  margin:0 auto;">
+        <br>When the new generation of Shanghainese enters the society, the Shanghai residents they are talking about are already a group that not only has different accents, but also speaks different languages.<br>
+        </br>In the last census, there were more than 200,000 overseas personages in Shanghai. Similarly, we use the 2010 census data to design a flow chart for showing the situation of the overseas people temporarily living in Shanghai. 
+        </p>
+    </div>
+        <div class="section" id="section5">
+            <iframe height="700" width="80%" class="embed-responsive-item" src="Graph5/index.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+                    <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                        Graph 5
+                     </p>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto;">
+                We define higher education as undergraduate. From the graph above，you can find that a considerable proportion of overseas population in Shanghai have received higher education, and nearly half of them come to Shanghai for work or business purposes.
+                 Talents are attracted to this city to improve themselves<br>
+            </br> As a number of labor forces immigrate to Shanghai，the local economy has developed over the last decades. 
+                </p>>
+        </div>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="landmark.html">Landmark</a></li>
+            <li><a href="traffic.html">Traffic</a></li>
+            <li><a href="economic.html">Economic</a></li>
+            <li class="active"><a href="people.html">People</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+    <div class="main" style="background-color:transparent;position:relative;min-height:100px;">
+        <footer>
+            <!-- 向下滚动 -->
+            <div id="explore">
+                <b> Explore next part</b>
+            </div>
+
+            <a href="economic.html">
+                <div class="scroll-down"></div>
+            </a>
+        </footer>
+    </div>
+    <script src="js/d3.v5.min.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Traffic</title>
@@ -28,20 +28,37 @@
             }
 
         p {
-            font-size: 1.5em;
+            font-size: 1em;
             font-family: 'Open Sans', sans-serif;
             color: #fff;
             margin: 0;
             padding: 0;
         }
-    
+
+        p.note{
+            font-size: 1em;
+            font-family: 'Oswald', sans-serif;
+            color: red;
+            margin: 0;
+            padding: 0;
+            font-weight:bolder
+        }
+
         /* background for body
         * --------------------------------------- */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/CASA0003_Visualisation_Group_7/Website/img/Page_traffic.jpg") fixed center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/Page_traffic.jpg") fixed center center;
             padding: 6% 0 0 0;
             background-size: cover;
             background-attachment: fixed;
+        }
+
+        iframe {
+            background-color: #fff;
+        }
+
+        .section {
+            margin-bottom: 50px;
         }
     </style>
     <!--[if IE]>
@@ -49,7 +66,6 @@
              var console = { log: function() {} };
         </script>
     <![endif]-->
-
     <style>
         .frame {
             fill: none;
@@ -100,7 +116,290 @@
             background-color: white;
             border-radius: 5px;
         }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            padding: 32px;
+        }
+
+        .row {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            -ms-flex-wrap: wrap; /* IE10 */
+            flex-wrap: wrap;
+            padding: 0 4px;
+        }
+
+        /* Create four equal columns that sits next to each other */
+        .column {
+            -ms-flex: 25%; /* IE10 */
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+        }
+
+            .column img {
+                margin-top: 8px;
+                vertical-align: middle;
+                width: 100%;
+            }
+
+        /* Responsive layout - makes a two column-layout instead of four columns */
+        @media screen and (max-width: 800px) {
+            .column {
+                -ms-flex: 50%;
+                flex: 50%;
+                max-width: 50%;
+            }
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column {
+                -ms-flex: 100%;
+                flex: 100%;
+                max-width: 100%;
+            }
+        }
+
+
+        /* 2021-05-26 start */
+        /*body {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            height: 100vh;
+            font-family: "Roboto", sans-serif;
+        }*/
+
+            body .credit {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                color: #000;
+            }
+
+        body .options {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            overflow: hidden;
+            min-width: 600px;
+            /*max-width: 1120px;*/
+            width: 80%;
+            height: 400px;
+            margin:0 auto;
+        }
+
+        @media screen and (max-width: 718px) {
+            body .options {
+                min-width: 520px;
+            }
+
+                body .options .option:nth-child(5) {
+                    display: none;
+                }
+        }
+
+        @media screen and (max-width: 638px) {
+            body .options {
+                min-width: 440px;
+            }
+
+                body .options .option:nth-child(4) {
+                    display: none;
+                }
+        }
+
+        @media screen and (max-width: 558px) {
+            body .options {
+                min-width: 360px;
+            }
+
+                body .options .option:nth-child(3) {
+                    display: none;
+                }
+        }
+
+        @media screen and (max-width: 478px) {
+            body .options {
+                min-width: 280px;
+            }
+
+                body .options .option:nth-child(2) {
+                    display: none;
+                }
+        }
+
+        body .options .option {
+            position: relative;
+            overflow: hidden;
+            min-width: 110px;
+            margin: 10px;
+            background: var(--optionBackground, var(--defaultBackground, #E6E9ED));
+            background-size: auto 120%;
+            background-position: center;
+            cursor: pointer;
+            transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+        }
+
+            body .options .option:nth-child(1) {
+                --defaultBackground: #ED5565;
+            }
+
+            body .options .option:nth-child(2) {
+                --defaultBackground: #FC6E51;
+            }
+
+            body .options .option:nth-child(3) {
+                --defaultBackground: #FFCE54;
+            }
+
+            body .options .option:nth-child(4) {
+                --defaultBackground: #2ECC71;
+            }
+
+            body .options .option:nth-child(5) {
+                --defaultBackground: #5D9CEC;
+            }
+
+            body .options .option:nth-child(6) {
+                --defaultBackground: #AC92EC;
+            }
+
+            body .options .option.active {
+                flex-grow: 10000;
+                transform: scale(1);
+                max-width: 600px;
+                margin: 0px;
+                border-radius: 40px;
+                background-size: auto 100%;
+                /*&:active {
+           transform:scale(0.9);
+        }*/
+            }
+
+                body .options .option.active .shadow {
+                    box-shadow: inset 0 -120px 120px -120px black, inset 0 -120px 120px -100px black;
+                }
+
+                body .options .option.active .label {
+                    bottom: 20px;
+                    left: 20px;
+                }
+
+                    body .options .option.active .label .info > div {
+                        left: 0px;
+                        opacity: 1;
+                    }
+
+            body .options .option:not(.active) {
+                flex-grow: 1;
+                border-radius: 30px;
+            }
+
+                body .options .option:not(.active) .shadow {
+                    bottom: -40px;
+                    box-shadow: inset 0 -120px 0px -120px black, inset 0 -120px 0px -100px black;
+                }
+
+                body .options .option:not(.active) .label {
+                    bottom: 10px;
+                    left: 10px;
+                }
+
+                    body .options .option:not(.active) .label .info > div {
+                        left: 20px;
+                        opacity: 0;
+                    }
+
+            body .options .option .shadow {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                height: 120px;
+                transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+            }
+
+            body .options .option .label {
+                display: flex;
+                position: absolute;
+                right: 0px;
+                height: 40px;
+                transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+            }
+
+                body .options .option .label .icon {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    min-width: 40px;
+                    max-width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                    background-color: white;
+                    color: var(--defaultBackground);
+                }
+
+                body .options .option .label .info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    margin-left: 10px;
+                    color: white;
+                    white-space: pre;
+                }
+
+                    body .options .option .label .info > div {
+                        position: relative;
+                        transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity 0.5s ease-out;
+                    }
+
+                    body .options .option .label .info .main {
+                        font-weight: bold;
+                        font-size: 1.2rem;
+                    }
+
+                    body .options .option .label .info .sub {
+                        transition-delay: 0.1s;
+                    }
+        /*2021-05-26 end */
+
+        .title-item-8 {
+            font-size: 28px;
+            color: red;
+            text-align: left;
+            border-left: 2px solid red;
+            padding-left: 6px;
+            font-weight: bolder;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .section-8-1 p {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .section-8-1 td {
+            padding: 8px 16px;
+        }
+        .lft-title-item-8 {
+            color: #fff;
+            font-size: 0.5em;
+            border-right: 0;
+            font-weight:lighter;
+            font-family: 'Oswald', sans-serif;
+        }
     </style>
+
 </head>
 <body>
     <div class="main" style="background-color:transparent;">
@@ -110,38 +409,208 @@
     </div>
     <div id="fullpage2">
         <div>
-            <h1 style="width: 70%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1);text-align: center;">
-                交通的具体内容
+            <h1 style="width: 80%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+                1.Display of Old Transportation in Shanghai
             </h1>
-            <p style="width:80%;  margin:0 auto;text-indent:2em; ">
-                HTML的英文全称是 Hyper Text Markup Language，即超文本标记语言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于1990年创立的一种标记语言，它是标准通用化标记语言SGML的应用。用HTML编写的超文本文档称为HTML文档，它能独立于各种操作系统平台(如UNIX， Windows等)。使用HTML，将所需要表达的信息按某种规则写成HTML文件，通过专用的浏览器来识别，并将这些HTML文件“翻译”成可以识别的信息，即现在所见到的网页。 [2]
-                自1990年以来，HTML就一直被用作万维网的信息表示语言，使用HTML描述的文件需要通过web浏览器显示出效果。HTML是一种建立网页文件的语言，通过标记式的指令(Tag)，将影像、声音、图片、文字动画、影视等内容显示出来。事实上，每一个HTML文档都是一种静态的网页文件，这个文件里面包含了HTML指令代码，这些指令代码并不是一种程序语言，只是一种排版网页中资料显示位置的标记结构语言，易学易懂，非常简单。HTML的普遍应用就是带来了超文本的技术―通过单击鼠标从一个主题跳转到另一个主题，从一个页面跳转到另一个页面，与世界各地主机的文件链接超文本传输协议规定了浏览器在运行HTML文档时所遵循的规则和进行的操作。HTTP的制定使浏览器在运行超文本时有了统一的规则和标准。 [2]
-                万维网（world wide web，简称www）上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。 [3]
-                网页的本质就是超文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。 [4]
-                定义
-                超文本标记语言是标准通用标记语言下的一个应用，也是一种规范，一种标准，它通过标记符号来标记要显示的网页中的各个部分。网页文件本身是一种文本文件，通过在文本文件中添加标记符，可以告诉浏览器如何显示其中的内容（如：文字如何处理，画面如何安排，图片如何显示等）。浏览器按顺序阅读网页文件，然后根据标记符解释和显示其标记的内容，对书写出错的标记将不指出其错误，且不停止其解释执行过程，编制者只能通过显示效果来分析出错原因和出错部位。但需要注意的是，对于不同的浏览器，对同一标记符可能会有不完全相同的解释，因而可能会有不同的显示效果。 [3]
-                HTML版本编辑
-                HTML是用来标记Web信息如何展示以及其他特性的一种语法规则，它最初于1989年由CERN的Tim Berners-Lee发明。HTML基于更古老一些的语言SGML定义，并简化了其中的语言元素。这些元素用于告诉浏览器如何在用户的屏幕上展示数据，所以很早就得到各个Web浏览器厂商的支持。 [5]
-                HTML历史上有如下版本： [5]
-                ①HTML 1.0：在1993年6月作为互联网工程工作小组(IETF)工作草案发布。 [5]
-                ②HTML 2.0：1995年1 1月作为RFC 1866发布，于2000年6月发布之后被宣布已经过时。 [5]
-                ③HTML 3.2：1997年1月14日，W3C推荐标准。 [5]
-                ④HTML 4.0：1997年12月18日，W3C推荐标准。 [5]
-                ⑤HTML 4.01（微小改进）：1999年12月24日，W3C推荐标准。 [5]
-                ⑥HTML 5：HTML5是公认的下一代Web语言，极大地提升了Web在富媒体、富内容和富应用等方面的能力，被喻为终将改变移动互联网的重要推手。Internet Explorer 8及以前的版本不支持。 [6]
-                HTML在Web迅猛发展的过程中起着重要作用，有着重要的地位。但随着网络应用的深入，特别是电子商务的应用，HTML过于简单的缺陷很快凸现出来：HTML不可扩展。HTML不允许应用程序开发者为具体的应用环境定义自定义的标记。HTML只能用于信息显示。HTML可以设置文本和图片显示方式，但没有语义结构，即HTML显示数据是按照布局而非语义的。随着网络应用的发展，各行业对信息有着不同的需求，这些不同类型的信息未必都是以网页的形式显示出来。例如。当通过搜索引擎进行数据搜索时，按照语义而非按照布局来显示数据会具有更多的优点。
-                总而言之，HTML的缺点使其交互性差，语义模糊，这些缺陷难以适应Internet飞速发展的要求，因此一个标准、简洁、结构严谨以及可高度扩展的XML就产生了。
+            <p style="width:80%;  margin:0 auto; ">
+                When the older generation of Shanghai residents talked about traffic in Shanghai,
+                they would talk more about trains and buses. Most of their destinations were not far away,
+                and most of them were confined to urban residences and workplaces.
+                As mentioned earlier, the lack of transportation restricted people from more distant areas from going to Shanghai.
+                At that time, most Shanghai residents came from other provinces next to Shanghai.
+                Therefore, if they wanted to return to hometown during the holidays, they can also take a train.
+                In addition, car rental business were also popular at that period.<br></br>
+                Our team designed a foldable photo gallery to show old transportation in Shanghai commonly used by residents over the past few decades. Over time, the color of the photos gradually became richer.
+                <br></br>
             </p>
         </div>
-        <div id="chart">
-            <h2 class="chart-title">title</h2>
+        <div class="options" style="margin-bottom:20px;">
+            <div class="option active" style="--optionBackground:url(img/traffic/1.jpg);">
+                <div class="shadow"></div>
+                <div class="label">
+                    <div class="icon">
+                        <img style="width:80%" src="img/traffic/1-logo.png" />
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <div class="info">
+                        <div class="main-3">Shanghai Old North Railway Station</div>
+                        <div class="sub">Destroyed and rebuilt several times in World War II,<br> now it has become the Shanghai Railway Museum.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option" style="--optionBackground:url(img/traffic/2.png);">
+                <div class="shadow"></div>
+                <div class="label">
+                    <div class="icon">
+                        <img style="width:80%" src="img/traffic/2-logo.png" />
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <div class="info">
+                        <div class="main-3">Tickets for the First Bus Line in Shanghai</div>
+                        <div class="sub">This line was operated by the British firstly in 1922,<br>and then they minted this kind of bus currency.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option" style="--optionBackground:url(img/traffic/3.jpeg);">
+                <div class="shadow"></div>
+                <div class="label">
+                    <div class="icon">
+                        <img style="width:80%" src="img/traffic/3-logo.png" />
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="info">
+                        <div class="main-3">Shanghai Car Rental Company - Auto Palace </div>
+                        <div class="sub">In addition to sales and maintenance,<br>more of the business is to provide car rental at the time.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option" style="--optionBackground:url(img/traffic/4.jpg);">
+                <div class="shadow"></div>
+                <div class="label">
+                    <div class="icon">
+                        <img style="width:80%" src="img/traffic/4-logo.png" />
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="info">
+                        <div class="main-3">Shanghai Metro Line 1</div>
+                        <div class="sub">On May 28th, 1993, <br>southern section of Shanghai Metro Line 1 were operated.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="option" style="--optionBackground:url(img/traffic/5.png);">
+                <div class="shadow"></div>
+                <div class="label">
+                    <div class="icon">
+                        <img style="width:80%" src="img/traffic/5-logo.png" />
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div class="info">
+                        <div class="main-3">Shanghai Hongqiao Airport</div>
+                        <div class="sub">Aerial view of Shanghai Hongqiao Airport in 1982.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width:80%;margin:0 auto;margin-bottom:20px;">
+            <h1 style="width: 95%; line-height: 200px; margin:0 auto; color:rgb(255, 1, 1); font-size:3.5em; text-align: center;">
+                2.Development of New Transportation in Shanghai
+            </h1>
+            <p>
+                When Shanghainese in the new era talked about transportation,
+                the travel mode they were talking about was no longer cars and trains.
+                They could use the convenient subway network at any time to travel around the city.
+                Also they can take advantage of Shanghai's airlines to travel to every corner of the world on weekends. We have designed two interactive maps to express the development of Shanghai's subway lines and international airlines.
+                <br></br>With both Shanghai residents and their quality of life increasing，the huge number of private vehicles causes traffic jams. To release this issue, the government approved the construction of undergrounds to facilitate people’s daily traveling.
+            </p>
+        </div>
+        <div class="section" id="section10">
+            <iframe height="605" width="80%" class="embed-responsive-item" src="Graph10/Subway.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 10
+            </p>
+        </div>
+        <div class="section section-8-1" id="section81" style="margin-top:-10px;">
+            <table style="width:80%;margin:0 auto;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h2 class="title-item-8">
+                                19
+                                <span class="lft-title-item-8">
+                                    lines
+                                </span>
+                            </h2>
+                            <p>The first metro line in Shanghai began in 1993. Currently, Shanghai has 19 lines. 
+                            </p>
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">
+                                29
+                                <span class="lft-title-item-8">
+                                   years
+                                </span>
+                            </h2>
+                            <p>From now on, the oldest line has operated for 29 years, and the latest line just be employed for less than 1 year. 
+                            </p>
+
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">
+                                2.8
+                                <span class="lft-title-item-8">
+                                    billion passengers
+                                </span>
+                            </h2>
+                            <p>By 2020, the total length of Shanghai metro is 772 km, and total passenger  traffic reaches over 2.8 billion.
+                            </p>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p style="width:80%;  margin:0 auto; ">
+                As mentioned in the previous people section, there are a large number of overseas people living in Shanghai for work or business purposes.
+                Shanghai’s abundant international airlines can attract more international talents who are willing to study or work in Shanghai.The map shows the development of Shanghai international airlines.
+                <br></br>
+            </p>
+        </div>
+        <div class="section" id="section11">
+            <iframe height="605" width="80%" class="embed-responsive-item" src="Graph11/International_Airline.html"
+                    frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowtransparency="yes"></iframe>
+            <p class=note style="width:70%;  margin:0 auto;text-indent:2em; ">
+                Graph 11
+            </p>
+        </div>
+        <div class="section section-8-1" id="section81" style="margin-top:-10px;">
+            <table style="width:80%;margin:0 auto;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h2 class="title-item-8">
+                                58
+                                <span class="lft-title-item-8">
+                                    airlines
+                                </span>
+                            </h2>
+                            <p>58 airlines to major cities in the world by 2017, about half of airlines are to Asia countries.</p>
+
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">
+                                Japan
+                                <span class="lft-title-item-8">
+                                 as destination
+                                </span>
+                            </h2>
+                            <p>The most frequent destinations of international airlines departing from Shanghai are Japan. 15 different international airlines to different cities.</p>
+
+                        </td>
+                        <td>
+                            <h2 class="title-item-8">
+                                9th
+                                <span class="lft-title-item-8">
+                                 in world
+                                </span>
+                            </h2>
+                            <p>Pudong Airport receives more than 70 million passengers every year, ranking 9th in the world in 2017.</p>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="menu">
         <ul>
             <li><a href="landmark.html">Landmark</a></li>
             <li class="active"><a href="traffic.html">Traffic</a></li>
-            <li><a href="people&economic.html">People and Economic</a></li>
+            <li><a href="economic.html">Economic</a></li>
+            <li><a href="people.html">People</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
@@ -158,5 +627,13 @@
             </a>
         </footer>
     </div>
+
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script>
+        $(".option").click(function(){
+           $(".option").removeClass("active");
+           $(this).addClass("active");  
+        });
+    </script>
 </body>
 </html>
