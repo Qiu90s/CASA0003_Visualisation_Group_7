@@ -80,7 +80,7 @@
 	/* Defining each sectino background and styles
 	* --------------------------------------- */
 	#section0{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_why.jpg);
+		background-image: url(/img/Shanghai_why.jpg);
 	}
 	#section0 h1{
 		/*top: 50%;
@@ -94,15 +94,15 @@
 		padding: 6% 0 0 0;
 	}	
 	#section2{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_answer.jpg);
+		background-image: url(/img/Shanghai_answer.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section4{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/shanghai_conclusion.jpg);
+		background-image: url(/img/shanghai_conclusion.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section5{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_group.jpg);
+		background-image: url(/img/Shanghai_group.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section4 h1{
@@ -113,19 +113,19 @@
 	/*Adding background for the slides
 	* --------------------------------------- */
 	#slide1{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_people.jpg);
+		background-image: url(/img/Shanghai_people.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide2{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_economic.jpg);
+		background-image: url(/img/Shanghai_economic.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide3{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_traffic.jpg);
+		background-image: url(/img/Shanghai_traffic.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide4{
-		background-image: url(/CASA0003_Visualisation_Group_7/Website/img/Shanghai_landmark.jpg);
+		background-image: url(/img/Shanghai_landmark.jpg);
 		padding: 6% 0 0 0;
 	}
         /*Adding text style for each part
@@ -181,8 +181,64 @@
 		color: #000;
 		font-weight:bolder
 	}
+	.column {
+  float: left;
+  width: 25%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
 
-	</style>
+/* Display the columns below each other instead of side by side on small screens */
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* Add some shadows to create a card effect */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Some left and right padding inside the container */
+.container {
+  padding: 20px 16px;
+  background-color: white;
+}
+
+/* Clear floats */
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.container p{
+	color:black
+}
+</style>
 
 	<!--[if IE]>
 		<script type="text/javascript">
@@ -203,7 +259,7 @@
             <p style="width:70%; margin:0 auto;">The reasons we select Shanghai as our target</p>
         </div>
         <div class="section" id="section1">
-            <img class="workflow" src="/CASA0003_Visualisation_Group_7/Website/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
+            <img class="workflow" src="/img/Shanghai_workflow.svg" alt="workflow" width="600" height="400">
             <h1 class="workflow" style="width: 70%; margin:0 auto; color:rgb(255, 1, 1)"> Development of Shanghai</h1>
             <p class="workflow" style="width:40%; color: #fff;">Shanghai is China’s economic and cultural center. Unlike other cities in the world, Shanghai’s development is closely related to China’s modern history. It took only a hundred years from a small county town to become the largest port in the Far East, which is also different from other cities in China. Shanghai's development has never stopped.<br /><br />When Shanghai residents talk about life in Shanghai, what are they actually talking about? Such conversations have occurred every day in the past few decades, and the answer to this question varies with the development of the city.</p>
         </div>
@@ -213,30 +269,83 @@
         </div>
         <div class="section" id="section3">
             <div class="slide" id="slide1" >
-		    <a href="people.html">
+				<a href="people.html">
 				<h1>People</h1>
 				Population Growth and Population Flow</a>
 			</div>
 			<div class="slide" id="slide2">
 				<a href="economic.html">
-					<h1>Economic</h1>
+				<h1>Economic</h1>
 				Development in Economy, Consumer Interest and Living Standards</a>
 			</div>
             <div class="slide" id="slide3">
-		    <a href="traffic.html">
-		          <h1>Traffic</h1>	
+				<a href="traffic.html">
+				<h1>Traffic</h1>
 				Evolution and Development of Traffic Methods</a>
 			</div>
             <div class="slide" id="slide4">
-		    <a href="landmark.html">
-		    <h1>Landmark</h1>
+				<a href="landmark.html">
+				<h1>Landmark</h1>
 				Mapbox Stroytelling of Famous Buildings in Shanghai</a>
 			</div>
         </div>
 		<div class="section" id="section4" data-anchor="section4"><h1 class="conclusion">CONCLUSION</h1>
 			<p class="conclusion" style="width:40%">In conclusion, landmarks in Shanghai witness urban vicissitudes over hundred years. At present, when people talk about Shanghai, it is a well-known international metropolis where attracts not only nation-wide labor force and capital but also foreigners who seek globally investment circumstances. As both labor and capital join in Shanghai urban construction, the living quality and resident economy are be enhanced due to its high-speed development. New transportation tools, such as undergrounds and airlines convenient citizens’ daily traveling and support tourism in Shanghai, strengthen the connection with the world. In the future, Shanghai will continue to grow towards a modern advanced city over the world.</p>
 		</div>
-        <div class="section" id="section5"><h1>our team here</h1></div>
+        <div class="section" id="section5">
+			<div class="row"  style="width:90%;margin:0 auto; margin-top:50px;">
+				<div class="column">
+				  <div class="card">
+					<img src="img/team_img_lqy.jpg" alt="Qiuyu Li" style="width:100%">
+					<div class="container">
+					  <h2 style="font-size: 1.5em;">Qiuyu Li</h2>
+					  <p class="title" style="font-size: 0.8em;">Web &amp; Visualization Designer</p>
+					  <p style="font-size: 0.8em;">Student number: 20199080</p>
+					  <p style="font-size: 0.8em;">Email: qiuyu.li.20@ucl.ac.uk</p>
+					  <a href="mailto:qiuyu.li.20@ucl.ac.uk"><button class="button">Contact</button></a>
+					</div>
+				  </div>
+				</div>
+			  
+				<div class="column">
+				  <div class="card">
+					<img src="img/team_img_gxc.jpg" alt="Xuchan Ge" style="width:100%">
+					<div class="container">
+					<h2 style="font-size: 1.5em;">Xuchen Ge</h2>
+					<p class="title" style="font-size: 0.8em;">Visualization Designer</p>
+					<p style="font-size: 0.8em;">Student number: 19086176</p>
+					<p style="font-size: 0.8em;">Email: xuchen.ge.20@ucl.ac.uk</p>
+					<a href="mailto:xuchen.ge.20@ucl.ac.uk"><button class="button">Contact</button></a>
+					</div>
+				  </div>
+				</div>
+			  
+				<div class="column">
+				  <div class="card">
+					<img src="img/team_img_liu.jpg" alt="Qinyan Liu" style="width:100%">
+					<div class="container">
+						<h2 style="font-size: 1.5em;">Qinyan Liu</h2>
+						<p class="title" style="font-size: 0.8em;">Visualization Designer</p>
+						<p style="font-size: 0.8em;">Student number: 20099623</p>
+						<p style="font-size: 0.8em;">Email: qingyan.liu.20@ucl.ac.uk</p>
+						<a href="mailto:qingyan.liu.20@ucl.ac.uk"><button class="button">Contact</button></a>
+					</div>
+				  </div>
+				</div>
+				<div class="column">
+					<div class="card">
+					  <img src="img/team_img_lsr.jpg" alt="Shurui Liu" style="width:100%">
+					  <div class="container">
+						  <h2 style="font-size: 1.5em;">Shurui Liu</h2>
+						  <p class="title" style="font-size: 0.8em;">Data Engineer</p>
+						  <p style="font-size: 0.8em;">Student number: 20053952</p>
+						  <p style="font-size: 0.8em;">Email: shurui.liu.20@ucl.ac.uk</p>
+						  <a href="mailto:shurui.liu.20@ucl.ac.uk"><button class="button">Contact</button></a>
+					  </div>
+					</div>
+				  </div>
+			  </div>
+		</div>
     </div>
   
     <div class="menu">
