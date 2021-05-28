@@ -9,7 +9,6 @@
             height:600px;
             margin:0 auto;
         }
-        /*2021-05-26 start */
         text {
             fill: #fff !important;
         }
@@ -23,7 +22,6 @@
         rect{
             fill:#fff !important;
         }
-        /*2021-05-26 end */
     </style>
 </head>
 <body>
@@ -50,8 +48,7 @@
             .append("svg")
             .attr("viewBox", [0, 0, width, height]);
 
-        // 2021-05-26 更改
-        var color = d3.scaleOrdinal(["Foreigner"], ["red"]).unknown("orange");
+        var color = d3.scaleOrdinal(["Foreigner"], ["#f53636"]).unknown("orange");
 
         d3.csv("Overseas_flow.csv").then(function (data) {
             data.forEach(function (item) {
