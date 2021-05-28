@@ -72,16 +72,15 @@
             display:none;
         }
 
-        /*2021-05-26 start */
         .axis path {
             stroke: #fff;
         }
 
         .axis line {
-            stroke: #fff; /* 2021-05-26 更改 */
+            stroke: #fff; 
         }
         .txt-time text {
-            fill: #fff; /* 2021-05-26 更改 */
+            fill: #fff;
         }
         text{
             fill:#fff !important;
@@ -104,7 +103,7 @@
                 stroke-width: 5px;
                 stroke-linecap: round
             }
-        /*2021-05-26 end */
+
     </style>
 </head>
 <body>
@@ -151,7 +150,6 @@
         </div>
     </div>
     <script src="d3/d3.v5.min.js"></script>
-    <!--<script src="data/res2.js"></script>-->
     <script>
         var width = 960;
         var height = 430;
@@ -199,9 +197,9 @@
             .text(chartTitle)
             ;
 
-        // 汽泡半径比例尺
+        // Bubble radius scale
         var scaleR = d3.scaleLinear().range([5, maxR]);
-        // 汽泡颜色比例尺
+        // Bubble color scale
         var colors = d3.scaleOrdinal(d3.schemeCategory10);
         var tooltip = d3.select("body")
             .append("div")
@@ -221,7 +219,7 @@
                 isPlay = !isPlay;
             });
 
-        // ------------------------ 初始坐标轴 start --------------------------------
+        // ------------------------ Initializing axis start --------------------------------
         var xScaleList = [];
         var scaleXDomainList = [
             5.5, 5.7, 5.9, 6.1, 6.3, 6.5, 6.7, 6.9, 7.1, 7.3, 7.5
@@ -250,7 +248,7 @@
         //        .domain([scaleXDomainList[i - 1], scaleXDomainList[i]])
         //        .range([0, scaleX.bandwidth()]));
         //}
-// 弹窗
+// popup
         function getTooltipContent(list, title) {
             var tpl = "<div style='margin-top:5px;'><span>"
             tpl += "{name}: </span>{value}</div>";
@@ -263,7 +261,7 @@
             html += "</div>";
             return html;
         }
-// 暂停播放
+// pause
         function play() {
             var sWidth = 860;
             var text = d3.select(".vzb-ts-slider-svg .vzb-ts-slider-value")
@@ -317,16 +315,13 @@
             return 0;
         }
 
-        // 比例尺,连续-连续
         var x = d3.scaleLinear()
-            .domain([0, 1000])
             .range([0, width]);
 
         var y = d3.scaleLinear()
-            .domain([0, 1000])
             .range([height, 0]);
 
-        // 绘制X轴标题
+        // x title
         var xaxisLeft = (width - xaxisName.length * 10) / 2;
         svg.append("g")
             .attr("class", "x-label")
@@ -359,7 +354,7 @@
                     .style("opacity", 0.0);
             });
 
-        // 绘制X轴单位
+        // x unit
         var xaxisUnit = "Log transformation of population"
         svg.append("g")
             .attr("class", "x-unit")
@@ -368,7 +363,7 @@
             .style("fill", "#ccc")
             .text(xaxisUnit)
             ;
-        //  绘制Y轴标题
+        //  y title
         var yaxisTitle = yaxisName;
         svg.append("g")
             .attr("class", "y-label")
@@ -402,7 +397,7 @@
                     .style("opacity", 0.0);
             })
             ;
-        //  绘制Y轴单位
+        //  y unit
         var yaxisUnit = "US$bn";
         svg.append("g")
             .attr("class", "y-unit")
@@ -414,7 +409,7 @@
             ;
 
 
-        // 坐标轴
+        // Axis
         var xAxis = d3.axisBottom()
             .scale(scaleX)
             .tickSize(-height);
@@ -430,9 +425,9 @@
             .tickSize(-width);
 
 
-        // ------------------------ 初始坐标轴 end --------------------------------
+        // ------------------------ Initializing axis end --------------------------------
 
-        // ------------------------ 动态坐标轴 start --------------------------------
+        // ------------------------ Dynamic axis start --------------------------------
         function randerAxis(opt) {
             x.domain([0, opt.maxX]);
             y.domain([0, opt.maxY]);
@@ -468,10 +463,10 @@
                 .attr("transform", (d, i) => "translate(0," + (scaleY.bandwidth() * (scaleYDomainList.length - i)) + ")");
         }
 
-        // ------------------------ 动态坐标轴 end ----------------------------------
+        // ------------------------ Dynamic axis end ----------------------------------
 
 
-        // ------------------------ 动态时间 start --------------------------------
+        // ------------------------ Dynamic time start --------------------------------
         function randerTime(year) {
             var timeWidth = year.length * timeFontSize;
             var timeLeft = (width - timeWidth) / 2 + timeFontSize / 1.3;
@@ -490,9 +485,9 @@
                 _g_txttime.select("text").text(year);
             }
         }
-        // ------------------------ 动态时间 end ----------------------------------
+        // ------------------------ Dynamic time end ----------------------------------
 
-        // ------------------------ 动态汽泡 start --------------------------------
+        // ------------------------ Dynamic bubble start --------------------------------
         function randerBubbles(inlist) {
             var currentObj = {};
             inlist.forEach(function (d) {
@@ -589,9 +584,9 @@
                 }
             });
         }
-        // ------------------------ 动态汽泡 end ----------------------------------
+        // ------------------------ Dynamic bubble end ----------------------------------
 
-        // ------------------------ 加载数据 start --------------------------------
+        // ------------------------ loading data start --------------------------------
         function init(data) {
             var dataMap = {};
             data.forEach(function (item) {
@@ -643,12 +638,12 @@
                 index++;
             }, transition);
         }
-        d3.csv("data/气泡图数据.csv?v=3").then(function (data2) {
+        d3.csv("data/dynamic bubbles.csv?v=3").then(function (data2) {
             waxisName = data2.columns[4];
             waxisShowName = data2.columns[7];
             init(data2);
         });
-                        // ------------------------ 加载数据 end --------------------------------
+                        // ------------------------ loading data end --------------------------------
     </script>
 </body>
 </html>
