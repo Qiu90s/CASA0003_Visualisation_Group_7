@@ -2,14 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
     <style>
         #chord-chart {
             width: 600px;
             height: 600px;
             margin: 0 auto;
         }
-        /*2021-05-26 start */
         text {
             fill: #fff !important;
         }
@@ -103,7 +101,7 @@
                     .text(d => names[d.index]))
                 .call(g => g.append("title")
                     .text(d => {
-                        return `${names[d.index]}owes ${formatValue(d3.sum(matrix[d.index]))}is owed ${formatValue(d3.sum(matrix, row => row[d.index]))}`
+                        return `${names[d.index]} outflow ${formatValue(d3.sum(matrix[d.index]))} people and inflow ${formatValue(d3.sum(matrix, row => row[d.index]))} people`
                     }));
 
             svg.selectAll(".path-item")
